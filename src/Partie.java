@@ -62,9 +62,9 @@ public class Partie
 			{
 				System.out.println("Tour du Joueur 1, quel colone ?");
 				do
-					{
-						numColone = sc.nextInt()-1;
-					}while ((numColone <0) || (numColone >6));
+				{
+					numColone = sc.nextInt()-1;
+				}while ((numColone <0) || (numColone >6));
 				numLigne = this.grille.Joue(this.j1, numColone);
 			}while(numLigne == Grille.PLEIN);
 			

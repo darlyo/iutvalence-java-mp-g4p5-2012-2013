@@ -107,7 +107,7 @@ public class Joueur
 		System.out.println("Bilan du match entre: "+j1.name+" et "+j2.name);
 		if (j1.victoire < j2.victoire)
 			System.out.println("Victoire de "+j2.name+" par "+j2.victoire+" a "+j1.victoire);
-		if (j1.victoire > j2.victoire)
+		else if (j1.victoire > j2.victoire)
 			System.out.println("Victoire de "+j1.name+" par "+j1.victoire+" a "+j2.victoire);
 		else
 			System.out.println("Le score est de "+j1.victoire+"partout." );
