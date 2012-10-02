@@ -1,3 +1,6 @@
+// FIXME déplacer dans un paquetage
+
+// FIXME corriger le commentaire
 /**
  * 
  * @author mainguene kevin 		marie joris
@@ -9,46 +12,51 @@
  */
 public class Grille
 {
+	// FIXME corriger le commentaire
 	/**
 	 * Une colonne est plein on ne pas pose un jeton
 	 */
 	public static final int PLEIN = -1;
 
+	// FIXME corriger le commentaire
 	/**
 	 * Renvoie 1 pour dire que le joueur a bien joué
 	 */
 	public static final int OK = 1;
 
+	// FIXME corriger le commentaire
 	/**
 	 * Pas de gagnant la parti continue.
 	 */
 	public static final int CONTINU = 0;
 
+	// FIXME corriger le commentaire
 	/**
-	 * définition d'une grille de 7 colonne et 6 ligne
+	 * définition d'une grille de 7 colonnes et 6 lignes
 	 * on place 0;0 en bas a gauche
-	public final static int[][] GRILLE;
+	 */
+	public int[][] grille;
 	
+	// FIXME préciser
+	/**
 	 * abscisse de la grille
 	 */
 	public int x;
-	
+
+	// FIXME préciser
 	/**
 	 * ordonnée de la grille
 	 */
 	public int y;
 	
-	/**
-	 * définie une grille 
-	 */
-	public int[][] grille;
-
+	
 	/**
 	 * crée une grille vide
 	 */
 	public Grille()
 	{
 		this.grille = new int[7][6];
+		 
 		this.x=0;
 		while (this.x!=7)
 		{
@@ -62,6 +70,9 @@ public class Grille
 		}
 	}
 	
+	// FIXME respecter les conventions d'écriture
+	// FIXME gérer les cas d'erreur avec des exceptions
+	// FIXME corriger le commentaire (ambigü)
 	/**
 	 * regarde si on peut rajouter un jeton dans une colonne
 	 * @param Joueur Numero du joueur 1 ou 2
@@ -83,6 +94,12 @@ public class Grille
 		return i;
 	}
 	
+	// FICME renommer la méthode
+	// FIXME compléter le commentaire
+	// FIXME respecter les conventions d'écriture
+	// FIXME réfléchir à la visibilité de la méthode (usage interne ou externe ?)
+	// FIXME paramètre ?
+	// FIXME réfléchir à l'endroit où il est plus judicieux de définir cette méthode 
 	/**
 	 * @return le vainqueur ou 0 pour continuer la partie 
 	 */
@@ -146,6 +163,7 @@ public class Grille
 		return CONTINU;
 	}
 	
+	// FIXME à supprimer
 	/**
 	 * Test une grille et regarde si c'est gagné 
 	 * @param x	:numero de la collone du dernier jeton poser
@@ -157,6 +175,8 @@ public class Grille
 	//	for 
 	//}
 	
+	
+	// FIXME remplacer par la redéfinition de ToString (classe Object)
 	/**
 	 * affiche une grille
 	 */

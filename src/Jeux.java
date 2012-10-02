@@ -1,5 +1,8 @@
+// FIXME déplacer dans un paquetgae (différent de celui des classes liées au jeu)
 import java.util.Scanner;
 
+// FIXME compléter le commentaire
+// FIXME renommer la classe
 /**
  * 
  * @author mainguek
@@ -7,7 +10,7 @@ import java.util.Scanner;
  */
 public class Jeux
 {
-
+	// FIXME compléter le commentaire
 	/**
 	 * @param args
 	 */

@@ -1,5 +1,8 @@
+// FIXME déplacer dans un paquetage
+
 import java.util.Scanner;
 
+// FIXME corriger le commentaire
 /**
  * 
  * @author mainguene kevin 		marie joris
@@ -8,32 +11,38 @@ import java.util.Scanner;
 public class Partie
 {
 	/**
-	 * T_MAX est le nombre maximal de tour qu'un partie peut duréé
+	 * T_MAX est le nombre maximal de tours qu'une partie peut durer
 	 */
 	private final static int T_MAX = 21; 
 	
+	// FIXME renommer l'attribut
 	/**
-	 * nombre de tour jouer
+	 * nombre de tours joués
 	 */
 	private int tour;
 	
 	/**
-	 * grille de jeux
+	 * grille de jeu
 	 */
 	private Grille grille;
 	
+	
+	// FIXME réfléchir au type de l'attribut
 	/**
 	 * Joueur 1 d'une partie
 	 */
 	private int j1;
 	
+	// FIXME réfléchir au type de l'attribut
 	/**
 	 * Joueur 2 d'une partie
 	 */
 	private int j2;
 	
+	
+	// FIXME détailler le commentaire
 	/**
-	 * Crée un partie
+	 * Créer une partie
 	 * @param j1 : Joueur 1
 	 * @param j2 : Joueur 2
 	 */
@@ -45,6 +54,9 @@ public class Partie
 		this.grille = new Grille();
 	}
 	
+	// FIXME détailler le commentaire
+	// FIXME se rendre indépendant de l'intercation avec les joueurs
+	// FIXME se rendre indépendant de l'affichage console
 	/**
 	 * lance une partie
 	 * @return le vainqueur
