@@ -1,20 +1,21 @@
-// FIXME déplacer dans un paquetgae (différent de celui des classes liées au jeu)
+package main;
+
 import java.util.Scanner;
 
-// FIXME compléter le commentaire
-// FIXME renommer la classe
+import base.Joueur;
+import base.Partie;
+
+
 /**
- * 
- * @author mainguek
- *
+ * @author mainguene kevin		Marie joris
+ * la classe contenant le lancement du jeux
  */
-public class Jeux
+public class Puissance_4
 {
-	// FIXME compléter le commentaire
 	/**
-	 * @param args
+	 * Menu et lancement des fonctionnalités du jeux 
 	 */
-	public static void main(String[] args)
+	public static void main()
 	{
 		// Déclaration de  variable
 		int choix = 0, choix2;
@@ -42,7 +43,7 @@ public class Jeux
 			{
 			case 1:
 			{
-				Partie partie = new Partie(j1, j2);
+				Partie partie = new Partie(j1.getName(), j2.getName());
 				resultat = partie.lancer();
 				if (resultat == 1)
 				{
@@ -59,7 +60,13 @@ public class Jeux
 			}	
 			case 2:
 			{	
-				j1.score(j1, j2);
+				System.out.println("Bilan du match entre: "+j1.getName()+" et "+j2.getName());
+				if (j1.getVictoire() < j2.getVictoire())
+					System.out.println("Victoire de "+j2.getName()+" par "+j2.getVictoire()+" a "+j1.getVictoire());
+				else if (j1.getVictoire() > j2.getVictoire())
+					System.out.println("Victoire de "+j1.getName()+" par "+j1.getVictoire()+" a "+j2.getVictoire());
+				else
+					System.out.println("Le score est de "+j1.getVictoire()+"partout." );
 			}
 			case 3:
 			{
