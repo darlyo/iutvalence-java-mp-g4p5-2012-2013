@@ -1,40 +1,43 @@
-package base;
+package fr.iutvalence.java.projets.puissance4;
 // FIXME déplacer dans un paquetage
 
 // FIXME compléter le commentaire
 /**
+ * @author mainguene kevin 		marie joris
+ * definition d'une classe joueur
  * 
- * @author mainguek
  *
  */
 public class Joueur
 {
 	//**************** VARIABLE ******************************	
 	
-	// FIXME le joueur peut-il changer de nom ? oui
-	// FIXME respecter les conventions d'écriture
+	// FIXME (FIXED) le joueur peut-il changer de nom ? oui
+	// FIXME (FIXED) respecter les conventions d'écriture
 	/**
 	 * nom du joueur
+	 * par defaut playeurX
+	 * mais peut etre modifier
 	 */
-	private String player_name;
+	private String playerName;
 	
 	/**
 	 * nombre de victoires
 	 */
-	// FIXME respecter les conventions d'écriture
-	// FIXME renommer l'attribut
-	private int nbvictoire;
+	// FIXME  (FIXED) respecter les conventions d'écriture
+	// FIXME  (FIXED) renommer l'attribut
+	private int nbVictoire;
 	
 	//*********** CONSTRUCTEUR *****************
 	
-	// FIXME réfléchir à la pertinence de ce constructeur
+	// FIXME  (FIXED) réfléchir à la pertinence de ce constructeur
 	/**
-	* Création d'un joueur
+	* Création d'un joueur pour sauvegarder ses partie
 	*/
 	public Joueur()
 	{			
-		this.player_name = "";
-		this.nbvictoire = 0;
+		this.playerName = "";
+		this.nbVictoire = 0;
 	}
 		
 	/**
@@ -43,10 +46,8 @@ public class Joueur
 	*/
 	public Joueur(String nom)
 	{
-
-		this.player_name = nom;
-		this.nbvictoire = 0;
-
+		this.playerName = nom;
+		this.nbVictoire = 0;
 	}
 		
 	//********* METHODE ********************	
@@ -55,31 +56,30 @@ public class Joueur
 	 * Donne le nombre de victoires d'un joueur
 	 * @return nombre de victoires
 	 */
-	// FIXMe renommer la méthode
-	public int getVictoire ()
+	// FIXME (FIXED) renommer la méthode
+	public int getNbVictoire ()
 	{
-		return this.nbvictoire;
+		return this.nbVictoire;
 	}
 	
 	
-	// FIXME corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
-	 * donne le nom d'un joueur
 	 * @return le nom du joueur
 	 */
 	public String getName()
 	{
-		return this.player_name;
+		return this.playerName;
 	}
 	
-	// FIXME corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
-	 * Change le nom d'un joueur par name
+	 * Change le nom du joueur
 	 * @param name : nouveau nom du joueur
 	 */
 	public void setName(String name)
 	{
-		this.player_name = name;
+		this.playerName = name;
 	}
 	
 	
@@ -90,7 +90,7 @@ public class Joueur
 	 */
 	public void gagne()
 	{
-		this.nbvictoire++;	
+		this.nbVictoire++;	
 	}
 	
 	

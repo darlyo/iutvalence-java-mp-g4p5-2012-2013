@@ -1,7 +1,7 @@
 package fr.iutvalence.java.projets.puissance4;
 
 
-// FIXME corriger le commentaire
+// FIXME (FIXED) corriger le commentaire
 /**
  * 
  * @author mainguene kevin 		marie joris
@@ -13,31 +13,31 @@ package fr.iutvalence.java.projets.puissance4;
  */
 public class Grille
 {
-	// FIXME corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
-	 * Une colonne est pleine on ne pas pose un jeton
+	 * constante renvoyer par la méthode joue indicant que la colone joue est pleine
 	 */
 	public static final int PLEIN = -1;
 	
-	// FIXME (fixed)définir une constante pour "vide"
+	// FIXME (FIXED) définir une constante pour "vide"
 	/**
 	 * Constante définisant une case vide dans la grille par 0
 	 */
 	public static final int VIDE = 0;
 
-	// FIXME (fixed) corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
 	 * constante ok supprimer
 	 */
 
-	// FIXME corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
 	 * constante continue supprimer
 	 */
 
 
-	// FIXME(fixed) corriger le commentaire
-	// FIXME (fixed) définir des constantes pour la taille
+	// FIXME (FIXED) corriger le commentaire
+	// FIXME (FIXED) définir des constantes pour la taille
 	/**
 	 * définition d'une grille de 7 colonnes et 6 lignes
 	 * on place 0;0 en bas a gauche contenant des entiers:
@@ -45,13 +45,13 @@ public class Grille
 	 */
 	public int[][] grille;
 	
-	// FIXME (fixed) préciser (inutile ?)
+	// FIXME (FIXED) préciser (inutile ?)
 	/**
 	 * taille de l'abscisse d'une grille
 	 */
 	public static final int xMax;
 
-	// FIXME (fixed) préciser
+	// FIXME (FIXED) préciser
 	/**
 	 * taille de l'ordonnée d'un grille
 	 */
@@ -67,7 +67,7 @@ public class Grille
 		
 		this.grille = new int[xMax][yMax];
 		 
-		// FIXME variable locale ?
+		// FIXME (FIXED) variable locale ?
 		x=0;
 		while (x!=7)
 		{
@@ -104,7 +104,7 @@ public class Grille
 		return i;
 	}
 	
-	// FIXME corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
 	 * redéfinition de la méthode toString pour afficher une grille
 	 */

@@ -1,9 +1,9 @@
-package main;
+package fr.iutvalence.java.projets.puissance4.test;
 
 import java.util.Scanner;
 
-import base.Joueur;
-import base.Partie;
+import fr.iutvalence.java.projets.puissance4.Joueur;
+import fr.iutvalence.java.projets.puissance4.Partie;
 
 
 /**

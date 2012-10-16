@@ -1,9 +1,8 @@
-package base;
+package fr.iutvalence.java.projets.puissance4;
 
 import java.util.Scanner;
 
 /**
- * 
  * @author mainguene kevin 		marie joris
  *	lancement d'une partie 
  */
