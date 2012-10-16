@@ -1,4 +1,4 @@
-package fr.iutvalence.java.projets.puissance4.test;
+package fr.iutvalence.java.projets.puissance4.tests;
 
 import java.util.Scanner;
 
@@ -7,8 +7,8 @@ import fr.iutvalence.java.projets.puissance4.Partie;
 
 
 /**
- * @author mainguene kevin		Marie joris
  * la classe contenant le lancement du jeux
+ * @author mainguene kevin		Marie joris
  */
 public class Puissance_4
 {
@@ -61,12 +61,12 @@ public class Puissance_4
 			case 2:
 			{	
 				System.out.println("Bilan du match entre: "+j1.getName()+" et "+j2.getName());
-				if (j1.getVictoire() < j2.getVictoire())
-					System.out.println("Victoire de "+j2.getName()+" par "+j2.getVictoire()+" a "+j1.getVictoire());
-				else if (j1.getVictoire() > j2.getVictoire())
-					System.out.println("Victoire de "+j1.getName()+" par "+j1.getVictoire()+" a "+j2.getVictoire());
+				if (j1.getNbVictoire() < j2.getNbVictoire())
+					System.out.println("Victoire de "+j2.getName()+" par "+j2.getNbVictoire()+" a "+j1.getNbVictoire());
+				else if (j1.getNbVictoire() > j2.getNbVictoire())
+					System.out.println("Victoire de "+j1.getName()+" par "+j1.getNbVictoire()+" a "+j2.getNbVictoire());
 				else
-					System.out.println("Le score est de "+j1.getVictoire()+"partout." );
+					System.out.println("Le score est de "+j1.getNbVictoire()+"partout." );
 			}
 			case 3:
 			{
