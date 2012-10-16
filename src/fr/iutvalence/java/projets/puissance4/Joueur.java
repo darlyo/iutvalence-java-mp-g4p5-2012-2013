@@ -3,10 +3,8 @@ package fr.iutvalence.java.projets.puissance4;
 
 // FIXME compléter le commentaire
 /**
+ * definition d'une classe joueur avec un nom et un nombre de victoire
  * @author mainguene kevin 		marie joris
- * definition d'une classe joueur
- * 
- *
  */
 public class Joueur
 {
@@ -84,7 +82,7 @@ public class Joueur
 	
 	
 
-	// FIXME corriger le commentaire 
+	// FIXME (FIXED) corriger le commentaire 
 	/**
 	 * le joueur vient de gagner un match
 	 */
@@ -94,6 +92,6 @@ public class Joueur
 	}
 	
 	
-	// FIXME à supprimer, pas de sens ici
+	// FIXME (FIXED) à supprimer, pas de sens ici
 	
 }

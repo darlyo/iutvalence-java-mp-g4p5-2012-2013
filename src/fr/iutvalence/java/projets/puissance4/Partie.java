@@ -3,8 +3,8 @@ package fr.iutvalence.java.projets.puissance4;
 import java.util.Scanner;
 
 /**
- * @author mainguene kevin 		marie joris
- *	lancement d'une partie 
+ * lance un partie et la géstionnera 
+ * @author mainguene kevin 		marie joris 
  */
 public class Partie
 {
@@ -15,7 +15,7 @@ public class Partie
 	 */
 	private final static int T_MAX = 21; 
 	
-	// FIXME corriger le commentaire
+	// FIXME (FIXED) corriger le commentaire
 	/**
 	 * resultat de check_victoire informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
 	 */
@@ -23,9 +23,9 @@ public class Partie
 	/**
 	 * nombre de tours joués
 	 */
-	// FIXME respecter les conventions d'écriture
-	// FIWME renommer l'attribut
-	private int nbtour;
+	// FIXME (FIXED) respecter les conventions d'écriture
+	// FIXME (FIXED) renommer l'attribut
+	private int nbTour;
 	
 	/**
 	 * grille de jeu
@@ -33,17 +33,17 @@ public class Partie
 	private Grille grille;
 	
 	
-	// FIXME réfléchir au type de l'attribut
+	// FIXME (FIXED) réfléchir au type de l'attribut
 	/**
-	 * Joueur 1 d'une partie
+	 * valeur du pions identifiant le Joueur 1 d'une partie
 	 */
-	private int j1 ;
+	private static int j1 ;
 	
-	// FIXME réfléchir au type de l'attribut
+	// FIXME (FIXED) réfléchir au type de l'attribut
 	/**
-	 * Joueur 2 d'une partie
+	 * valeur du pions identifiant le Joueur 2 d'une partie
 	 */
-	private int j2 ;
+	private static int j2 ;
 	
 	/**
 	 * Nom du joueur 1
@@ -62,7 +62,7 @@ public class Partie
 	 * @param player1 : nom du joueur 1
 	 * @param player2 : nom du joueur 2
 	 */
-	// FIXME réfléchir au type des paramètres
+	// FIXME (FIXED) réfléchir au type des paramètres
 	public Partie(String player1, String player2)
 	{
 		if (player1 != "")		
@@ -75,7 +75,7 @@ public class Partie
 			this.player2 = "Joueur 2";
 		this.j1 = 1;
 		this.j2 = 2;
-		this.nbtour = 0;
+		this.nbTour = 0;
 		this.grille = new Grille();
 	}
 	
@@ -95,8 +95,8 @@ public class Partie
 		int numLigne;
 		Scanner sc = new Scanner(System.in);
 		
-		this.grille.ToString();
-		while ((this.nbtour != T_MAX) && (this.checkVictoire()== Grille.CONTINU))
+		this.grille.toString();
+		while ((this.nbTour != T_MAX) && (this.checkVictoire()== CONTINU))
 		{
 			do
 			{
@@ -108,7 +108,7 @@ public class Partie
 				numLigne = this.grille.Joue(this.j1, numColone);
 			}while(numLigne == Grille.PLEIN);
 			
-			this.grille.ToString();
+			this.grille.toString();
 			
 			if (this.checkVictoire() == 0)
 			{
@@ -120,17 +120,18 @@ public class Partie
 						numColone = sc.nextInt()-1;
 					}while ((numColone <0) || (numColone >6));
 				}while((this.grille.Joue(this.j2, numColone)) == Grille.PLEIN);
-				this.grille.ToString();
+				this.grille.toString();
 			}
 			
-			this.nbtour++; // tour suivant
+			this.nbTour++; // tour suivant
 		}
 		
 		return this.checkVictoire();
 	}
 	
-	// FIXME compléter le commentaire
+	// FIXME (FIXED) compléter le commentaire
 	/**
+	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
 	 * @return le vainqueur ou 0 pour continuer la partie 
 	 */
 	public int checkVictoire()

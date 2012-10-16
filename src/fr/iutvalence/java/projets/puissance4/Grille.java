@@ -3,13 +3,12 @@ package fr.iutvalence.java.projets.puissance4;
 
 // FIXME (FIXED) corriger le commentaire
 /**
- * 
- * @author mainguene kevin 		marie joris
  *	definition de la grille de jeu
  *	initialisation de la grille
  *	check de victoire
  *	ajout du pion j1
  *	ajout du pion j2
+ * @author mainguene kevin 		marie joris
  */
 public class Grille
 {
@@ -49,13 +48,13 @@ public class Grille
 	/**
 	 * taille de l'abscisse d'une grille
 	 */
-	public static final int xMax;
+	public static final int XMAX = 7;
 
 	// FIXME (FIXED) préciser
 	/**
 	 * taille de l'ordonnée d'un grille
 	 */
-	public static final int yMax;
+	public static final int YMAX = 6;
 	
 	
 	/**
@@ -65,14 +64,14 @@ public class Grille
 	{
 		int x,y;
 		
-		this.grille = new int[xMax][yMax];
+		this.grille = new int[XMAX][YMAX];
 		 
 		// FIXME (FIXED) variable locale ?
 		x=0;
-		while (x!=7)
+		while (x!=XMAX)
 		{
 			y=0;
-			while(y!=6)
+			while(y!=YMAX)
 			{
 				this.grille[x][y] = VIDE;
 				y = +1;
@@ -92,7 +91,7 @@ public class Grille
 	{
 		int i ;
 		
-		for (i=0; i<6; i++)
+		for (i=0; i<YMAX; i++)
 		{
 			if (this.grille[numColone][i] == VIDE)
 			{
@@ -100,7 +99,7 @@ public class Grille
 				break;
 			}
 		}
-		if (i == 6) return PLEIN;
+		if (i == YMAX) return PLEIN;
 		return i;
 	}
 	
@@ -114,10 +113,10 @@ public class Grille
 		
 		String chaine = "";
 		
-		for (y=5; y >= 0; y--)
+		for (y=YMAX-1; y >= 0; y--)
 		{
 			chaine = chaine+"|";
-			for (x=0; x < 7; x++)
+			for (x=0; x < XMAX; x++)
 			{
 				chaine = chaine+" "+this.grille[x][y]+" |";
 			}
