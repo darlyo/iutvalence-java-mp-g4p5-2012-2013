@@ -1,3 +1,4 @@
+// FIXME renommer le paquetage (fr.iutvalence.java.projets.puissance4)
 package base;
 
 
@@ -18,6 +19,8 @@ public class Grille
 	 * Une colonne est plein on ne pas pose un jeton
 	 */
 	public static final int PLEIN = -1;
+	
+	// FIXME définir une constante pour "vide"
 
 	// FIXME corriger le commentaire
 	/**
@@ -32,13 +35,14 @@ public class Grille
 	public static final int CONTINU = 0;
 
 	// FIXME corriger le commentaire
+	// FIXME définir des constantes pour la taille
 	/**
 	 * définition d'une grille de 7 colonnes et 6 lignes
 	 * on place 0;0 en bas a gauche
 	 */
 	public int[][] grille;
 	
-	// FIXME préciser
+	// FIXME préciser (inutile ?)
 	/**
 	 * abscisse de la grille
 	 */
@@ -58,6 +62,7 @@ public class Grille
 	{
 		this.grille = new int[7][6];
 		 
+		// FIXME variable locale ?
 		this.x=0;
 		while (this.x!=7)
 		{
@@ -94,10 +99,11 @@ public class Grille
 		return i;
 	}
 	
+	// FIXME corriger le commentaire
 	/**
 	 * affiche une grille
 	 */
-	public void ToString()
+	public String toString()
 	{
 		int x,y;
 		

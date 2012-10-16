@@ -12,6 +12,7 @@ public class Joueur
 	//**************** VARIABLE ******************************	
 	
 	// FIXME le joueur peut-il changer de nom ? oui
+	// FIXME respecter les conventions d'écriture
 	/**
 	 * nom du joueur
 	 */
@@ -20,6 +21,8 @@ public class Joueur
 	/**
 	 * nombre de victoires
 	 */
+	// FIXME respecter les conventions d'écriture
+	// FIXME renommer l'attribut
 	private int nbvictoire;
 	
 	//*********** CONSTRUCTEUR *****************
@@ -52,6 +55,7 @@ public class Joueur
 	 * Donne le nombre de victoires d'un joueur
 	 * @return nombre de victoires
 	 */
+	// FIXMe renommer la méthode
 	public int getVictoire ()
 	{
 		return this.nbvictoire;

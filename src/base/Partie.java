@@ -24,6 +24,8 @@ public class Partie
 	/**
 	 * nombre de tours joués
 	 */
+	// FIXME respecter les conventions d'écriture
+	// FIWME renommer l'attribut
 	private int nbtour;
 	
 	/**
@@ -57,10 +59,11 @@ public class Partie
 	//************* CONSTRUCTEUR ****************
 	
 	/**
-	 * Créer une partie vierge entre 2 joueur 
+	 * Créer une partie vierge entre 2 joueurs 
 	 * @param player1 : nom du joueur 1
 	 * @param player2 : nom du joueur 2
 	 */
+	// FIXME réfléchir au type des paramètres
 	public Partie(String player1, String player2)
 	{
 		if (player1 != "")		
@@ -79,7 +82,7 @@ public class Partie
 	
 	//****************** METHODE ************************
 	
-	// FIXME se rendre indépendant de l'intercation avec les joueurs
+	// FIXME se rendre indépendant de l'interaction avec les joueurs
 	// FIXME se rendre indépendant de l'affichage console
 	/**
 	 * lance une partie avec au maximun 21 tour
@@ -127,6 +130,7 @@ public class Partie
 		return this.checkVictoire();
 	}
 	
+	// FIXME compléter le commentaire
 	/**
 	 * @return le vainqueur ou 0 pour continuer la partie 
 	 */
