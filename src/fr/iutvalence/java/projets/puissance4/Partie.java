@@ -37,13 +37,13 @@ public class Partie
 	/**
 	 * valeur du pions identifiant le Joueur 1 d'une partie
 	 */
-	private static int j1 ;
+	private int j1 ;
 	
 	// FIXME (FIXED) réfléchir au type de l'attribut
 	/**
 	 * valeur du pions identifiant le Joueur 2 d'une partie
 	 */
-	private static int j2 ;
+	private int j2 ;
 	
 	/**
 	 * Nom du joueur 1

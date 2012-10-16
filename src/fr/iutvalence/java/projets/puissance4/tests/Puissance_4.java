@@ -14,8 +14,9 @@ public class Puissance_4
 {
 	/**
 	 * Menu et lancement des fonctionnalités du jeux 
+	 * @param args parametre vide
 	 */
-	public static void main()
+	public static void main(String[] args)
 	{
 		// Déclaration de  variable
 		int choix = 0, choix2;
@@ -43,7 +44,9 @@ public class Puissance_4
 			{
 			case 1:
 			{
+				System.out.println("lu");
 				Partie partie = new Partie(j1.getName(), j2.getName());
+				System.out.println("lo");
 				resultat = partie.lancer();
 				if (resultat == 1)
 				{
@@ -57,6 +60,7 @@ public class Puissance_4
 				}
 				else
 					System.out.println("Match nul");
+				break;
 			}	
 			case 2:
 			{	
@@ -67,6 +71,7 @@ public class Puissance_4
 					System.out.println("Victoire de "+j1.getName()+" par "+j1.getNbVictoire()+" a "+j2.getNbVictoire());
 				else
 					System.out.println("Le score est de "+j1.getNbVictoire()+"partout." );
+				break;
 			}
 			case 3:
 			{
@@ -88,12 +93,14 @@ public class Puissance_4
 						System.out.println("Entrer le nouveau nom du joueur 1:");
 						nom = sc.next();
 						j1.setName(nom);
+						break;
 					}
 					case 2: 
 					{
 						System.out.println("Entrer le nouveau nom du joueur 2:");
 						nom = sc.next();
 						j2.setName(nom);
+						break;
 					}
 					case 3:
 					{
