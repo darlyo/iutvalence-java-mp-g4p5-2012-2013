@@ -1,12 +1,11 @@
-// FIXME renommer le paquetage (fr.iutvalence.java.projets.puissance4)
-package base;
+package fr.iutvalence.java.projets.puissance4;
 
 
 // FIXME corriger le commentaire
 /**
  * 
  * @author mainguene kevin 		marie joris
- *	definition de la grille de jeux
+ *	definition de la grille de jeu
  *	initialisation de la grille
  *	check de victoire
  *	ajout du pion j1
@@ -16,43 +15,47 @@ public class Grille
 {
 	// FIXME corriger le commentaire
 	/**
-	 * Une colonne est plein on ne pas pose un jeton
+	 * Une colonne est pleine on ne pas pose un jeton
 	 */
 	public static final int PLEIN = -1;
 	
-	// FIXME définir une constante pour "vide"
+	// FIXME (fixed)définir une constante pour "vide"
+	/**
+	 * Constante définisant une case vide dans la grille par 0
+	 */
+	public static final int VIDE = 0;
+
+	// FIXME (fixed) corriger le commentaire
+	/**
+	 * constante ok supprimer
+	 */
 
 	// FIXME corriger le commentaire
 	/**
-	 * Renvoie 1 pour dire que le joueur a bien joué
+	 * constante continue supprimer
 	 */
-	public static final int OK = 1;
 
-	// FIXME corriger le commentaire
-	/**
-	 * Pas de gagnant la parti continue.
-	 */
-	public static final int CONTINU = 0;
 
-	// FIXME corriger le commentaire
-	// FIXME définir des constantes pour la taille
+	// FIXME(fixed) corriger le commentaire
+	// FIXME (fixed) définir des constantes pour la taille
 	/**
 	 * définition d'une grille de 7 colonnes et 6 lignes
-	 * on place 0;0 en bas a gauche
+	 * on place 0;0 en bas a gauche contenant des entiers:
+	 * 0 pour vide ou 1 et 2 pour un joueur
 	 */
 	public int[][] grille;
 	
-	// FIXME préciser (inutile ?)
+	// FIXME (fixed) préciser (inutile ?)
 	/**
-	 * abscisse de la grille
+	 * taille de l'abscisse d'une grille
 	 */
-	public int x;
+	public static final int xMax;
 
-	// FIXME préciser
+	// FIXME (fixed) préciser
 	/**
-	 * ordonnée de la grille
+	 * taille de l'ordonnée d'un grille
 	 */
-	public int y;
+	public static final int yMax;
 	
 	
 	/**
@@ -60,19 +63,21 @@ public class Grille
 	 */
 	public Grille()
 	{
-		this.grille = new int[7][6];
+		int x,y;
+		
+		this.grille = new int[xMax][yMax];
 		 
 		// FIXME variable locale ?
-		this.x=0;
-		while (this.x!=7)
+		x=0;
+		while (x!=7)
 		{
-			this.y=0;
-			while(this.y!=6)
+			y=0;
+			while(y!=6)
 			{
-				this.grille[this.x][this.y]=0;
-				this.y = this.y+1;
+				this.grille[x][y] = VIDE;
+				y = +1;
 			}
-			this.x =this.x+1;
+			x = x+1;
 		}
 	}
 	
@@ -89,7 +94,7 @@ public class Grille
 		
 		for (i=0; i<6; i++)
 		{
-			if (this.grille[numColone][i] == 0)
+			if (this.grille[numColone][i] == VIDE)
 			{
 				this.grille[numColone][i] = joueur;
 				break;
@@ -101,20 +106,23 @@ public class Grille
 	
 	// FIXME corriger le commentaire
 	/**
-	 * affiche une grille
+	 * redéfinition de la méthode toString pour afficher une grille
 	 */
 	public String toString()
 	{
 		int x,y;
 		
+		String chaine = "";
+		
 		for (y=5; y >= 0; y--)
 		{
-			System.out.print("|");
+			chaine = chaine+"|";
 			for (x=0; x < 7; x++)
 			{
-				System.out.print(" "+this.grille[x][y]+" |");
+				chaine = chaine+" "+this.grille[x][y]+" |";
 			}
-			System.out.print("\n|---|---|---|---|---|---|---|\n");
+			chaine = chaine+"\n|---|---|---|---|---|---|---|\n";
 		}
+		return chaine;
 	}
 }
