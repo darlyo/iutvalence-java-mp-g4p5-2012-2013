@@ -63,21 +63,20 @@ public class Grille
 	public Grille()
 	{
 		int x,y;
-		
 		this.grille = new int[XMAX][YMAX];
-		 
 		// FIXME (FIXED) variable locale ?
 		x=0;
-		while (x!=XMAX)
+		while (x !=XMAX)
 		{
 			y=0;
-			while(y!=YMAX)
+			while(y !=YMAX)
 			{
 				this.grille[x][y] = VIDE;
-				y = +1;
+				y = y+1;
 			}
 			x = x+1;
 		}
+		System.out.println("1");
 	}
 	
 	// FIXME gérer les cas d'erreur avec des exceptions

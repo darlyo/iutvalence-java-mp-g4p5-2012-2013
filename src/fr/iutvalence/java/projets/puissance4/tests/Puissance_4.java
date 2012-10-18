@@ -44,9 +44,7 @@ public class Puissance_4
 			{
 			case 1:
 			{
-				System.out.println("lu");
 				Partie partie = new Partie(j1.getName(), j2.getName());
-				System.out.println("lo");
 				resultat = partie.lancer();
 				if (resultat == 1)
 				{
