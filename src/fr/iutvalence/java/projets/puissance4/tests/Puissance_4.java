@@ -7,11 +7,14 @@ import fr.iutvalence.java.projets.puissance4.Partie;
 
 
 /**
- * la classe contenant le lancement du jeux
+ * La classe contenant le lancement du jeu
  * @author mainguene kevin		Marie joris
  */
+// FIXME renommer la classe
 public class Puissance_4
 {
+	// FIXME ce n'est pas dans cette classe qu'il faut gérer l'algorithmique de la partie, mais dans la classe Partie.
+	// Ici, on doit ce contenter de créer une partie, de la démarrer, et d'attendre qu'elle se termine
 	/**
 	 * Menu et lancement des fonctionnalités du jeux 
 	 * @param args parametre vide
