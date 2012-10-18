@@ -24,8 +24,8 @@ public class Joueur
 	/**
 	 * nombre de victoires
 	 */
-	// FIXME  (NOT FIXED) renommer l'attribut (il peut y avoir plusieurs victoires ;-) )
-	private int nbVictoire;
+	// FIXME  (NOT FIXED)(REFIXED) renommer l'attribut (il peut y avoir plusieurs victoires ;-) )
+	private int nbVictoires;
 	
 	//*********** CONSTRUCTEUR *****************
 	
@@ -35,7 +35,7 @@ public class Joueur
 	public Joueur()
 	{			
 		this.playerName = "Player";
-		this.nbVictoire = 0;
+		this.nbVictoires = 0;
 	}
 		
 	/**
@@ -45,7 +45,7 @@ public class Joueur
 	public Joueur(String nom)
 	{
 		this.playerName = nom;
-		this.nbVictoire = 0;
+		this.nbVictoires = 0;
 	}
 		
 	//********* METHODE ********************	
@@ -57,12 +57,13 @@ public class Joueur
 	// FIXME renommer la méthode
 	public int getNbVictoire ()
 	{
-		return this.nbVictoire;
+		return this.nbVictoires;
 	}
 	
 	
-	// FIXME (NOT FIXED) corriger le commentaire (il faut 2 lignes : 1 pour la description, une pour la balise @return)
+	// FIXME (NOT FIXED)(FIXED) corriger le commentaire (il faut 2 lignes : 1 pour la description, une pour la balise @return)
 	/**
+	 * permet d'obtenir le nom du joueur 
 	 * @return le nom du joueur
 	 */
 	public String getName()
@@ -85,7 +86,7 @@ public class Joueur
 	 */
 	public void gagne()
 	{
-		this.nbVictoire++;	
+		this.nbVictoires++;	
 	}
 	
 }
