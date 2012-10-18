@@ -1,7 +1,7 @@
 package fr.iutvalence.java.projets.puissance4;
 
 
-// FIXME (FIXED) corriger le commentaire
+// FIXME (NOT FIXED !) corriger le commentaire (juste indiquer à quoi sert la classe, éventuellement comment est placé le repère (numéros de lignes et colonnes)
 /**
  *	definition de la grille de jeu
  *	initialisation de la grille
@@ -12,31 +12,17 @@ package fr.iutvalence.java.projets.puissance4;
  */
 public class Grille
 {
-	// FIXME (FIXED) corriger le commentaire
+	// FIXME (NOT FIXED!) corriger le commentaire : ne pas indiquer par quelle méthode la constante est utilisée mais juste quel sens elle véhicule
 	/**
 	 * constante renvoyer par la méthode joue indicant que la colone joue est pleine
 	 */
 	public static final int PLEIN = -1;
 	
-	// FIXME (FIXED) définir une constante pour "vide"
 	/**
-	 * Constante définisant une case vide dans la grille par 0
+	 * Constante représentant un contenu "vide" pour une case de la grille
 	 */
 	public static final int VIDE = 0;
 
-	// FIXME (FIXED) corriger le commentaire
-	/**
-	 * constante ok supprimer
-	 */
-
-	// FIXME (FIXED) corriger le commentaire
-	/**
-	 * constante continue supprimer
-	 */
-
-
-	// FIXME (FIXED) corriger le commentaire
-	// FIXME (FIXED) définir des constantes pour la taille
 	/**
 	 * définition d'une grille de 7 colonnes et 6 lignes
 	 * on place 0;0 en bas a gauche contenant des entiers:
@@ -44,16 +30,19 @@ public class Grille
 	 */
 	public int[][] grille;
 	
-	// FIXME (FIXED) préciser (inutile ?)
+	
+	// FIXME regrouper les définitions des constantes avant celles des attributs
 	/**
-	 * taille de l'abscisse d'une grille
+	 * largeur de la grille
 	 */
+	// FIXME renommer la constante
 	public static final int XMAX = 7;
 
 	// FIXME (FIXED) préciser
 	/**
-	 * taille de l'ordonnée d'un grille
+	 * hauteur de la grille
 	 */
+	// FIXME renommer la constante
 	public static final int YMAX = 6;
 	
 	
@@ -64,7 +53,6 @@ public class Grille
 	{
 		int x,y;
 		this.grille = new int[XMAX][YMAX];
-		// FIXME (FIXED) variable locale ?
 		x=0;
 		while (x !=XMAX)
 		{
@@ -104,7 +92,7 @@ public class Grille
 		return i;
 	}
 	
-	// FIXME (FIXED) corriger le commentaire
+	// FIXME (NOT FIXED) corriger le commentaire : indiquer le contenu de la chaîne retournée
 	/**
 	 * redéfinition de la méthode toString pour afficher une grille
 	 */
@@ -125,4 +113,7 @@ public class Grille
 		}
 		return chaine;
 	}
+	
+	// FIXME ajouter une méthode pour obtenir le contenu d'une case de la grille
+	// FIXME ajouter une méthode pour modifier le contenu d'une case de la grille
 }
