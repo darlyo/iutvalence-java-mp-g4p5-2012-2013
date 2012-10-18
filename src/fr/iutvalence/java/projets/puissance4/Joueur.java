@@ -22,15 +22,13 @@ public class Joueur
 	/**
 	 * nombre de victoires
 	 */
-	// FIXME  (FIXED) respecter les conventions d'écriture
-	// FIXME  (FIXED) renommer l'attribut
+	// FIXME  (NOT FIXED) renommer l'attribut (il peut y avoir plusieurs victoires ;-) )
 	private int nbVictoire;
 	
 	//*********** CONSTRUCTEUR *****************
 	
-	// FIXME  (FIXED) réfléchir à la pertinence de ce constructeur
 	/**
-	* Création d'un joueur pour sauvegarder ses partie
+	* Création d'un joueur pour sauvegarder ses parties
 	*/
 	public Joueur()
 	{			
@@ -54,14 +52,14 @@ public class Joueur
 	 * Donne le nombre de victoires d'un joueur
 	 * @return nombre de victoires
 	 */
-	// FIXME (FIXED) renommer la méthode
+	// FIXME renommer la méthode
 	public int getNbVictoire ()
 	{
 		return this.nbVictoire;
 	}
 	
 	
-	// FIXME (FIXED) corriger le commentaire
+	// FIXME (NOT FIXED) corriger le commentaire (il faut 2 lignes : 1 pour la description, une pour la balise @return)
 	/**
 	 * @return le nom du joueur
 	 */
@@ -70,7 +68,6 @@ public class Joueur
 		return this.playerName;
 	}
 	
-	// FIXME (FIXED) corriger le commentaire
 	/**
 	 * Change le nom du joueur
 	 * @param name : nouveau nom du joueur
@@ -80,9 +77,7 @@ public class Joueur
 		this.playerName = name;
 	}
 	
-	
 
-	// FIXME (FIXED) corriger le commentaire 
 	/**
 	 * le joueur vient de gagner un match
 	 */
@@ -90,8 +85,5 @@ public class Joueur
 	{
 		this.nbVictoire++;	
 	}
-	
-	
-	// FIXME (FIXED) à supprimer, pas de sens ici
 	
 }

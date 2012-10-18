@@ -2,8 +2,9 @@ package fr.iutvalence.java.projets.puissance4;
 
 import java.util.Scanner;
 
+// FIXME corriger le commentaire : ouvrir un bescherelle ou trouver dans le dictionnaire le verbe "géstionner" (bon courage !) ;-)
 /**
- * lance un partie et la géstionnera 
+ * lance une partie et la géstionnera 
  * @author mainguene kevin 		marie joris 
  */
 public class Partie
@@ -15,16 +16,16 @@ public class Partie
 	 */
 	private final static int T_MAX = 21; 
 	
-	// FIXME (FIXED) corriger le commentaire
 	/**
-	 * resultat de check_victoire informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
+	 * Informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
 	 */
 	public static final int CONTINU = 0;
+	
 	/**
 	 * nombre de tours joués
 	 */
-	// FIXME (FIXED) respecter les conventions d'écriture
-	// FIXME (FIXED) renommer l'attribut
+	
+	// FIXME (FIXED) renommer l'attribut (il peut y avoir plusieurs tours ;-) )
 	private int nbTour;
 	
 	/**
@@ -33,15 +34,13 @@ public class Partie
 	private Grille grille;
 	
 	
-	// FIXME (FIXED) réfléchir au type de l'attribut
 	/**
-	 * valeur du pions identifiant le Joueur 1 d'une partie
+	 * valeur du pion identifiant le Joueur 1 d'une partie
 	 */
 	private int j1 ;
 	
-	// FIXME (FIXED) réfléchir au type de l'attribut
 	/**
-	 * valeur du pions identifiant le Joueur 2 d'une partie
+	 * valeur du pion identifiant le Joueur 2 d'une partie
 	 */
 	private int j2 ;
 	
@@ -62,7 +61,6 @@ public class Partie
 	 * @param player1 : nom du joueur 1
 	 * @param player2 : nom du joueur 2
 	 */
-	// FIXME (FIXED) réfléchir au type des paramètres
 	public Partie(String player1, String player2)
 	{
 		if (player1 != "")		
@@ -129,7 +127,6 @@ public class Partie
 		return this.checkVictoire();
 	}
 	
-	// FIXME (FIXED) compléter le commentaire
 	/**
 	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
 	 * @return le vainqueur ou 0 pour continuer la partie 
