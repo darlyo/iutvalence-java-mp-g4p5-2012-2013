@@ -1,6 +1,5 @@
 package fr.iutvalence.java.projets.puissance4;
 
-import java.util.Scanner;
 
 /**
  * lance un partie et la géstionnera 
@@ -81,7 +80,7 @@ public class Partie
 	
 	//****************** METHODE ************************
 	
-	// FIXME se rendre indépendant de l'interaction avec les joueurs
+	// FIXME (FIXED) se rendre indépendant de l'interaction avec les joueurs
 	// FIXME se rendre indépendant de l'affichage console
 	/**
 	 * lance une partie avec au maximun 21 tour
@@ -93,21 +92,16 @@ public class Partie
 	{
 		int numColone;
 		int numLigne;
-		Scanner sc = new Scanner(System.in);
 		
 		this.grille.toString();
 		while ((this.nbTour != T_MAX) && (this.checkVictoire()== CONTINU))
 		{
-			System.out.println("Tour de "+ this.player1+" , quel colone ?");
 			do
 			{
-				do
-				{
-					numColone = sc.nextInt()-1;
-				}while ((numColone <0) || (numColone >6));
+				numColone = new Saisie(this.player1).getC();
 				try
 				{
-					numLigne = this.grille.Joue(this.j1, numColone);
+					numLigne = this.grille.Joue(this.j1, (int)(numColone));
 				}
 				catch(ColonnePleineEx e) 
 				{
@@ -115,18 +109,13 @@ public class Partie
 					numLigne = Grille.PLEIN;
 				};
 			}while(numLigne == Grille.PLEIN);
-			
-			System.out.println(grille);
+			System.out.println(this.grille);
 			
 			if (this.checkVictoire() == 0)
 			{
 				do
 				{
-					System.out.println("Tour de "+this.player2+" , quel colone ?");
-					do
-					{
-						numColone = sc.nextInt()-1;
-					}while ((numColone <0) || (numColone >6));
+					numColone = new Saisie(this.player2).getC();
 					try
 					{
 						numLigne = this.grille.Joue(this.j2, numColone);
@@ -137,7 +126,7 @@ public class Partie
 						numLigne = Grille.PLEIN;
 					};
 				}while(numLigne == Grille.PLEIN);
-				System.out.println(grille);
+				System.out.println(this.grille);
 			}
 			
 			this.nbTour++; // tour suivant

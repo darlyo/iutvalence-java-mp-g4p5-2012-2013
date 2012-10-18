@@ -79,7 +79,7 @@ public class Grille
 		System.out.println("1");
 	}
 	
-	// FIXME gérer les cas d'erreur avec des exceptions
+	// FIXME (FIXED) gérer les cas d'erreur avec des exceptions
 	/**
 	 * Ajoute un jeton dans la colone donner en parametre par le joueur et renvoie PLEIN si on peut pas jouer
 	 * @param joueur : 1 ou 2 en fonvtion du joueur qui joue
