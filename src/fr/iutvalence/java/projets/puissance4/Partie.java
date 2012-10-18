@@ -98,17 +98,25 @@ public class Partie
 		this.grille.toString();
 		while ((this.nbTour != T_MAX) && (this.checkVictoire()== CONTINU))
 		{
+			System.out.println("Tour de "+ this.player1+" , quel colone ?");
 			do
 			{
-				System.out.println("Tour de "+ this.player1+" , quel colone ?");
 				do
 				{
 					numColone = sc.nextInt()-1;
 				}while ((numColone <0) || (numColone >6));
-				numLigne = this.grille.Joue(this.j1, numColone);
+				try
+				{
+					numLigne = this.grille.Joue(this.j1, numColone);
+				}
+				catch(ColonnePleineEx e) 
+				{
+					System.out.println("La colonne est pleine choisissez une autre colonne.");
+					numLigne = Grille.PLEIN;
+				};
 			}while(numLigne == Grille.PLEIN);
 			
-			this.grille.toString();
+			System.out.println(grille);
 			
 			if (this.checkVictoire() == 0)
 			{
@@ -119,8 +127,17 @@ public class Partie
 					{
 						numColone = sc.nextInt()-1;
 					}while ((numColone <0) || (numColone >6));
-				}while((this.grille.Joue(this.j2, numColone)) == Grille.PLEIN);
-				this.grille.toString();
+					try
+					{
+						numLigne = this.grille.Joue(this.j2, numColone);
+					}
+					catch(ColonnePleineEx e) 
+					{
+						System.out.println("La colonne est pleine choisissez une autre colonne.");
+						numLigne = Grille.PLEIN;
+					};
+				}while(numLigne == Grille.PLEIN);
+				System.out.println(grille);
 			}
 			
 			this.nbTour++; // tour suivant

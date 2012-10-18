@@ -1,9 +1,11 @@
 package fr.iutvalence.java.projets.puissance4;
-// FIXME déplacer dans un paquetage
+// FIXME (FIXED) déplacer dans un paquetage
 
-// FIXME compléter le commentaire
+// FIXME (FIXED) compléter le commentaire
 /**
  * definition d'une classe joueur avec un nom et un nombre de victoire
+ * et defini les méthode pour modifier le nom et augmenter le nb de 
+ * victoire ainsi que les afficher
  * @author mainguene kevin 		marie joris
  */
 public class Joueur
@@ -34,7 +36,7 @@ public class Joueur
 	*/
 	public Joueur()
 	{			
-		this.playerName = "";
+		this.playerName = "Player";
 		this.nbVictoire = 0;
 	}
 		

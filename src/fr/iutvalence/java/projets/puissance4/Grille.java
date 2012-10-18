@@ -85,8 +85,9 @@ public class Grille
 	 * @param joueur : 1 ou 2 en fonvtion du joueur qui joue
 	 * @param numColone : numero de la colonne ou on ajoute un jeton
 	 * @return numero de la case libre ou PLEIN si la colone est pleine.
+	 * @throws ColonnePleineEx  traite le cas ou la colonne est pleine
 	 */
-	public int Joue (int joueur, int numColone)
+	public int Joue (int joueur, int numColone) throws ColonnePleineEx
 	{
 		int i ;
 		
@@ -98,7 +99,8 @@ public class Grille
 				break;
 			}
 		}
-		if (i == YMAX) return PLEIN;
+		if (i == YMAX) 
+			throw new ColonnePleineEx();
 		return i;
 	}
 	
