@@ -24,7 +24,7 @@ public class Partie
 	 * nombre de tours joués
 	 */
 
-	// FIXME (FIXED) renommer l'attribut (il peut y avoir plusieurs tours ;-) )
+	// FIXME (NOT FIXED) renommer l'attribut (il peut y avoir plusieurs tours ;-) )
 	private int nbTour;
 
 	/**
@@ -80,7 +80,7 @@ public class Partie
 
 	// ****************** METHODE ************************
 
-	// FIXME (FIXED) se rendre indépendant de l'interaction avec les joueurs
+	
 	// FIXME se rendre indépendant de l'affichage console
 	/**
 	 * lance une partie avec au maximun 21 tour le joueur 1 commence il pose son jeton, on affiche la grille et on
@@ -98,14 +98,18 @@ public class Partie
 		{
 			do
 			{
+				// FIXME (NOT FIXED) se rendre indépendant de l'interaction avec les joueurs (à discuter !)
+				// FIXME commencer par faire une implémentation aléatoire du joueur
 				numColone = new Saisie(this.player1).getC();
 				try
 				{
 					numLigne = this.grille.Joue(this.j1, (int) (numColone));
 				}
-				catch (ColonnePleineEx e)
+				catch (ColonnePleineException e)
 				{
 					System.out.println("La colonne est pleine choisissez une autre colonne.");
+					
+					// FIXME on peut se passer de cette constante, faire autrement
 					numLigne = Grille.PLEIN;
 				}
 				;
@@ -122,7 +126,7 @@ public class Partie
 					{
 						numLigne = this.grille.Joue(this.j2, numColone);
 					}
-					catch (ColonnePleineEx e)
+					catch (ColonnePleineException e)
 					{
 						System.out.println("La colonne est pleine choisissez une autre colonne.");
 						numLigne = Grille.PLEIN;
@@ -211,19 +215,5 @@ public class Partie
 
 		return CONTINU;
 	}
-
-	/**
-	 * Test une grille et regarde si c'est gagné
-	 * 
-	 * @param x
-	 *            :numero de la collone du dernier jeton poser
-	 * @param y
-	 *            :numero de la ligne du derier jeton poser
-	 * @return le vainqueur ou 0
-	 */
-	// public int Check(int x, int y)
-	// {
-	// for
-	// }
 
 }

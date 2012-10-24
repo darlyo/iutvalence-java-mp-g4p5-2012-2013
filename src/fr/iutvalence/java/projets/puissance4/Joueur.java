@@ -1,8 +1,5 @@
 package fr.iutvalence.java.projets.puissance4;
 
-// FIXME (FIXED) déplacer dans un paquetage
-
-// FIXME (FIXED) compléter le commentaire
 /**
  * definition d'une classe joueur avec un nom et un nombre de victoire et defini les méthode pour modifier le nom et
  * augmenter le nb de victoire ainsi que les afficher
@@ -13,8 +10,6 @@ public class Joueur
 {
 	// **************** VARIABLE ******************************
 
-	// FIXME (FIXED) le joueur peut-il changer de nom ? oui
-	// FIXME (FIXED) respecter les conventions d'écriture
 	/**
 	 * nom du joueur par defaut playeurX mais peut etre modifier
 	 */
@@ -23,7 +18,6 @@ public class Joueur
 	/**
 	 * nombre de victoires
 	 */
-	// FIXME (NOT FIXED)(REFIXED) renommer l'attribut (il peut y avoir plusieurs victoires ;-) )
 	private int nbVictoires;
 
 	// *********** CONSTRUCTEUR *****************
@@ -62,8 +56,6 @@ public class Joueur
 		return this.nbVictoires;
 	}
 
-	// FIXME (NOT FIXED)(FIXED) corriger le commentaire (il faut 2 lignes : 1 pour la description, une pour la balise
-	// @return)
 	/**
 	 * permet d'obtenir le nom du joueur
 	 * 

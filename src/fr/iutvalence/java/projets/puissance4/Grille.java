@@ -1,6 +1,5 @@
 package fr.iutvalence.java.projets.puissance4;
 
-// FIXME (NOT FIXED !)(FIXED) corriger le commentaire (juste indiquer à quoi sert la classe, éventuellement comment est placé le repère (numéros de lignes et colonnes)
 /**
  * definition d'une grille de jeu avec le point d'origine en bas a gauche
  * 
@@ -8,30 +7,19 @@ package fr.iutvalence.java.projets.puissance4;
  */
 public class Grille
 {
-	// FIXME (NOT FIXED!)(FIXED) corriger le commentaire : ne pas indiquer par quelle méthode la constante est utilisée
-	// mais juste quel sens elle véhicule
-	/**
-	 * constante envoyé indicant que la colone joué est pleine
-	 */
-	public static final int PLEIN = -1;
-
 	/**
 	 * Constante représentant un contenu "vide" pour une case de la grille
 	 */
 	public static final int VIDE = 0;
 
-	// FIXME (FIXED) regrouper les définitions des constantes avant celles des attributs
 	/**
 	 * largeur de la grille
 	 */
-	// FIXME (FIXED) renommer la constante
 	public static final int X_MAX = 7;
 
-	// FIXME (FIXED) préciser
 	/**
 	 * hauteur de la grille
 	 */
-	// FIXME (FIXED) renommer la constante
 	public static final int Y_MAX = 6;
 
 	/**
@@ -58,41 +46,44 @@ public class Grille
 			}
 			x = x + 1;
 		}
-		System.out.println("1");
 	}
 
-	// FIXME (FIXED) gérer les cas d'erreur avec des exceptions
+	// FIXME remplacer le type de retour par void puisqu'une exception est déjà soulevée en cas d'erreur (et modifier la documentation)
 	/**
 	 * Ajoute un jeton dans la colone donner en parametre par le joueur et renvoie PLEIN si on peut pas jouer
 	 * 
 	 * @param joueur
-	 *            : 1 ou 2 en fonvtion du joueur qui joue
+	 *            : 1 ou 2 en fonction du joueur qui joue
 	 * @param numColone
 	 *            : numero de la colonne ou on ajoute un jeton
 	 * @return numero de la case libre ou PLEIN si la colone est pleine.
-	 * @throws ColonnePleineEx
+	 * @throws ColonnePleineException
 	 *             traite le cas ou la colonne est pleine
 	 */
-	public int Joue(int joueur, int numColone) throws ColonnePleineEx
+	// FIXME soulever une autre exception si la colonne n'existe pas
+	public int Joue(int joueur, int numColone) throws ColonnePleineException
 	{
 		int i;
-
 		for (i = 0; i < Y_MAX; i++)
 		{
 			if (this.grille[numColone][i] == VIDE)
 			{
 				this.grille[numColone][i] = joueur;
+				// FIXME return au lieu de break;
 				break;
 			}
 		}
 		if (i == Y_MAX)
-			throw new ColonnePleineEx();
+			throw new ColonnePleineException();
 		return i;
 	}
 
 	// FIXME (NOT FIXED) corriger le commentaire : indiquer le contenu de la chaîne retournée
+	
+	 // redéfinition de la méthode toString pour afficher le contenu de l'objet grille a l'aide d'une chaine
+	 
 	/**
-	 * redéfinition de la méthode toString pour afficher le contenu de l'objet grille a l'aide d'une chaine
+	 * @see java.lang.Object#toString()
 	 */
 	public String toString()
 	{
@@ -113,7 +104,7 @@ public class Grille
 	}
 
 	/**
-	 * donne le valeur d'une case
+	 * donne la valeur d'une case
 	 * 
 	 * @param x
 	 *            abscisse de la case
@@ -121,7 +112,7 @@ public class Grille
 	 *            ordonnée de la case
 	 * @return valeur de la case
 	 */
-	// FIXME (FIXED) ajouter une méthode pour obtenir le contenu d'une case de la grille
+	// FIXME soulever une exception si la case n'existe pas 
 	public int getCase(int x, int y)
 	{
 		return this.grille[x][y];
