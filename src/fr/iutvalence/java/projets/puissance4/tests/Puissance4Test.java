@@ -10,8 +10,8 @@ import fr.iutvalence.java.projets.puissance4.Partie;
  * 
  * @author mainguene kevin Marie joris
  */
-// FIXME renommer la classe
-public class Puissance_4
+// FIXME (FIXED) renommer la classe
+public class Puissance4Test
 {
 	// FIXME ce n'est pas dans cette classe qu'il faut gérer l'algorithmique de la partie, mais dans la classe Partie.
 	// Ici, on doit ce contenter de créer une partie, de la démarrer, et d'attendre qu'elle se termine
@@ -68,14 +68,14 @@ public class Puissance_4
 				case 2:
 				{
 					System.out.println("Bilan du match entre: " + j1.getName() + " et " + j2.getName());
-					if (j1.getNbVictoire() < j2.getNbVictoire())
-						System.out.println("Victoire de " + j2.getName() + " par " + j2.getNbVictoire() + " a "
-								+ j1.getNbVictoire());
-					else if (j1.getNbVictoire() > j2.getNbVictoire())
-						System.out.println("Victoire de " + j1.getName() + " par " + j1.getNbVictoire() + " a "
-								+ j2.getNbVictoire());
+					if (j1.getNbVictoires() < j2.getNbVictoires())
+						System.out.println("Victoire de " + j2.getName() + " par " + j2.getNbVictoires() + " a "
+								+ j1.getNbVictoires());
+					else if (j1.getNbVictoires() > j2.getNbVictoires())
+						System.out.println("Victoire de " + j1.getName() + " par " + j1.getNbVictoires() + " a "
+								+ j2.getNbVictoires());
 					else
-						System.out.println("Le score est de " + j1.getNbVictoire() + "partout.");
+						System.out.println("Le score est de " + j1.getNbVictoires() + "partout.");
 					break;
 				}
 				case 3:

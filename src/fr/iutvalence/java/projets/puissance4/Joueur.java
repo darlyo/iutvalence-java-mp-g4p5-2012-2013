@@ -50,8 +50,8 @@ public class Joueur
 	 * 
 	 * @return nombre de victoires
 	 */
-	// FIXME renommer la méthode
-	public int getNbVictoire()
+	// FIXME (FIXED) renommer la méthode
+	public int getNbVictoires()
 	{
 		return this.nbVictoires;
 	}

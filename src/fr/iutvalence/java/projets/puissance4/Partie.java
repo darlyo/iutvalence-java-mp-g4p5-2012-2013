@@ -11,6 +11,11 @@ public class Partie
 	// ************** VARIABLES ******************
 
 	/**
+	 * PLEIN constante qui permet d'indiquer si la colone ou on vient de jouer est pleine
+	 */
+	private final static boolean PLEIN = false;
+	
+	/**
 	 * T_MAX est le nombre maximal de tours qu'une partie peut durer
 	 */
 	private final static int T_MAX = 21;
@@ -24,8 +29,8 @@ public class Partie
 	 * nombre de tours joués
 	 */
 
-	// FIXME (NOT FIXED) renommer l'attribut (il peut y avoir plusieurs tours ;-) )
-	private int nbTour;
+	// FIXME ( FIXED) renommer l'attribut (il peut y avoir plusieurs tours ;-) )
+	private int nbTours;
 
 	/**
 	 * grille de jeu
@@ -74,7 +79,7 @@ public class Partie
 			this.player2 = "Joueur 2";
 		this.j1 = 1;
 		this.j2 = 2;
-		this.nbTour = 0;
+		this.nbTours = 0;
 		this.grille = new Grille();
 	}
 
@@ -91,10 +96,10 @@ public class Partie
 	public int lancer()
 	{
 		int numColone;
-		int numLigne;
+		boolean saisieOk;
 
 		this.grille.toString();
-		while ((this.nbTour != T_MAX) && (this.checkVictoire() == CONTINU))
+		while ((this.nbTours != T_MAX) && (this.checkVictoire() == CONTINU))
 		{
 			do
 			{
@@ -103,18 +108,18 @@ public class Partie
 				numColone = new Saisie(this.player1).getC();
 				try
 				{
-					numLigne = this.grille.Joue(this.j1, (int) (numColone));
+					saisieOk = true;
+					this.grille.joue(this.j1, (int) (numColone));
 				}
 				catch (ColonnePleineException e)
 				{
 					System.out.println("La colonne est pleine choisissez une autre colonne.");
 					
-					// FIXME on peut se passer de cette constante, faire autrement
-					numLigne = Grille.PLEIN;
-				}
-				;
+					// FIXME (FIXED) on peut se passer de cette constante, faire autrement
+					saisieOk = PLEIN;
+				};
 			}
-			while (numLigne == Grille.PLEIN);
+			while (saisieOk);
 			System.out.println(this.grille);
 
 			if (this.checkVictoire() == 0)
@@ -124,20 +129,19 @@ public class Partie
 					numColone = new Saisie(this.player2).getC();
 					try
 					{
-						numLigne = this.grille.Joue(this.j2, numColone);
+						this.grille.joue(this.j2, numColone);
 					}
 					catch (ColonnePleineException e)
 					{
 						System.out.println("La colonne est pleine choisissez une autre colonne.");
-						numLigne = Grille.PLEIN;
-					}
-					;
+						saisieOk = PLEIN;
+					};
 				}
-				while (numLigne == Grille.PLEIN);
+				while (saisieOk);
 				System.out.println(this.grille);
 			}
 
-			this.nbTour++; // tour suivant
+			this.nbTours++; // tour suivant
 		}
 
 		return this.checkVictoire();
