@@ -58,8 +58,10 @@ public class Grille
 	 *            : numero de la colonne ou on ajoute un jeton
 	 * @throws ColonnePleineException
 	 *             traite le cas ou la colonne est pleine
+	 * @throws ColonneNotExisteException 
+	 * 				traite le cas ou la colone n'existe pas
 	 */
-	// FIXME  soulever une autre exception si la colonne n'existe pas
+	// FIXME  (FIXED) soulever une autre exception si la colonne n'existe pas
 	public void joue(int joueur, int numColone) throws ColonnePleineException, ColonneNotExisteException
 	{
 		int i;

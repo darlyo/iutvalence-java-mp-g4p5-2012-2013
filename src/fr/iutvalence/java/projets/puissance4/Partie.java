@@ -11,9 +11,14 @@ public class Partie
 	// ************** VARIABLES ******************
 
 	/**
-	 * PLEIN constante qui permet d'indiquer si la colone ou on vient de jouer est pleine
+	 * PLEIN boolean qui permet d'indiquer si la colone ou on vient de jouer est pleine
 	 */
 	private final static boolean PLEIN = false;
+	
+	/**
+	 * ERRORCOLONNE boolean qui indique false si la colonne n'existe pas
+	 */
+	private final static boolean ERRORCOLONNE = false;
 	
 	/**
 	 * T_MAX est le nombre maximal de tours qu'une partie peut durer
@@ -113,11 +118,17 @@ public class Partie
 				}
 				catch (ColonnePleineException e)
 				{
-					System.out.println("La colonne est pleine choisissez une autre colonne.");
+					System.out.println("La colonne est pleine, choisissez une autre colonne.");
 					
 					// FIXME (FIXED) on peut se passer de cette constante, faire autrement
 					saisieOk = PLEIN;
-				};
+				}
+				catch (ColonneNotExisteException e)
+				{
+					System.out.println("La colonne n'existe pas, choisissez une autre colonne.");
+					
+					saisieOk = ERRORCOLONNE;
+				};	
 			}
 			while (saisieOk);
 			System.out.println(this.grille);
@@ -135,7 +146,13 @@ public class Partie
 					{
 						System.out.println("La colonne est pleine choisissez une autre colonne.");
 						saisieOk = PLEIN;
-					};
+					}
+					catch (ColonneNotExisteException e)
+					{
+						System.out.println("La colonne n'existe pas, choisissez une autre colonne.");
+						
+						saisieOk = ERRORCOLONNE;
+					};	
 				}
 				while (saisieOk);
 				System.out.println(this.grille);
