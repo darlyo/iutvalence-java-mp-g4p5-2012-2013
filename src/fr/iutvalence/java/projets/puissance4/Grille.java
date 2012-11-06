@@ -106,7 +106,7 @@ public class Grille
 				{
 					chaine = chaine + " ";
 				}
-				if (this.grille[x][y] == 1)
+				else if (this.grille[x][y] == 1)
 				{
 					chaine = chaine + "X";
 				}
