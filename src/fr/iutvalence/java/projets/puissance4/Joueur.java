@@ -27,7 +27,7 @@ public class Joueur
 	 */
 	public Joueur()
 	{
-		this.playerName = "Player";
+		this.playerName = "";
 		this.nbVictoires = 0;
 	}
 

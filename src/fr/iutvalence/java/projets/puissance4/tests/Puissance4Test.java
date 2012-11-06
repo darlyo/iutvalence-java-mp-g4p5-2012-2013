@@ -49,7 +49,17 @@ public class Puissance4Test
 			{
 				case 1:
 				{
-					Partie partie = new Partie(j1.getName(), j2.getName());
+					Partie partie;
+					int ordre = (int) Math.round(Math.random());
+					
+					if (ordre == 1)
+					{
+						partie = new Partie(j1.getName(), j2.getName());
+					}
+					else 
+					{
+						partie = new Partie(j2.getName(), j1.getName());
+					}
 					resultat = partie.lancer();
 					if (resultat == 1)
 					{
@@ -67,7 +77,15 @@ public class Puissance4Test
 				}
 				case 2:
 				{
-					System.out.println("Bilan du match entre: " + j1.getName() + " et " + j2.getName());
+					System.out.print("\n Bilan du match entre: ");
+					if ( j1.getName() == "")
+						System.out.print("Joueur 1");
+					else System.out.print(j1.getName());
+					System.out.print(" et ");
+					if (j2.getName() == "")
+						System.out.print("Joueur 2");
+					else System.out.print(j2.getName());
+					
 					if (j1.getNbVictoires() < j2.getNbVictoires())
 						System.out.println("Victoire de " + j2.getName() + " par " + j2.getNbVictoires() + " a "
 								+ j1.getNbVictoires());

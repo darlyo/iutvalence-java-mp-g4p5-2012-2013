@@ -101,7 +101,20 @@ public class Grille
 			chaine = chaine + "|";
 			for (x = 0; x < X_MAX; x++)
 			{
-				chaine = chaine + " " + this.grille[x][y] + " |";
+				chaine = chaine + " ";
+				if (this.grille[x][y] == VIDE)
+				{
+					chaine = chaine + " ";
+				}
+				if (this.grille[x][y] == 1)
+				{
+					chaine = chaine + "X";
+				}
+				else 
+				{
+					chaine = chaine + "O";
+				}
+				chaine = chaine + " |";
 			}
 			chaine = chaine + "\n|---|---|---|---|---|---|---|\n";
 		}

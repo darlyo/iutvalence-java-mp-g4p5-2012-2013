@@ -26,7 +26,7 @@ public class Saisie
 	{
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Tour de " + player + " , quel colone ?");
+		System.out.println("Tour de " + player + " , quelle colonne ?");
 		do
 		{
 			this.numColone = sc.nextInt() - 1;
