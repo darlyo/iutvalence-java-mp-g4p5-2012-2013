@@ -64,14 +64,16 @@ public class Grille
 	// FIXME  (FIXED) soulever une autre exception si la colonne n'existe pas
 	public void joue(int joueur, int numColone) throws ColonnePleineException, ColonneNotExisteException
 	{
-		int i;
+		int i = 0;
 		if ((numColone < 0 ) || ( numColone > 6))
 				throw new ColonneNotExisteException();
+
 		for (i = 0; i < Y_MAX; i++)
 		{
 			if (this.grille[numColone][i] == VIDE)
 			{
 				this.grille[numColone][i] = joueur;
+				break;
 			}
 		}
 		if (i == Y_MAX)

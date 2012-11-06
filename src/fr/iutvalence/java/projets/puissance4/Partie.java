@@ -130,7 +130,7 @@ public class Partie
 					saisieOk = ERRORCOLONNE;
 				};	
 			}
-			while (saisieOk);
+			while (!saisieOk);
 			System.out.println(this.grille);
 
 			if (this.checkVictoire() == 0)
@@ -154,7 +154,7 @@ public class Partie
 						saisieOk = ERRORCOLONNE;
 					};	
 				}
-				while (saisieOk);
+				while (!saisieOk);
 				System.out.println(this.grille);
 			}
 
