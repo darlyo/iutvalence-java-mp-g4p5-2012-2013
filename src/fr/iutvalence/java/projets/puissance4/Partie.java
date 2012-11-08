@@ -1,8 +1,8 @@
 package fr.iutvalence.java.projets.puissance4;
 
-// FIXME corriger le commentaire : ouvrir un bescherelle ou trouver dans le dictionnaire le verbe "géstionner" (bon courage !) ;-)
+// FIXME  FIXED !!! corriger le commentaire : ouvrir un bescherelle ou trouver dans le dictionnaire le verbe "géstionner" (bon courage !) ;-)
 /**
- * lance une partie et la géstionnera
+ * lance une partie et la gère
  * 
  * @author mainguene kevin marie joris
  */
@@ -29,6 +29,12 @@ public class Partie
 	 * Informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
 	 */
 	public static final int CONTINU = 0;
+	
+	
+	/**
+	 *  NBPIONS le nombre de pions a alligner pour gagner
+	 */
+	public final static int NBPIONS = 4;
 
 	/**
 	 * nombre de tours joués
@@ -102,7 +108,7 @@ public class Partie
 		boolean saisieOk;
 
 		this.grille.toString();
-		while ((this.nbTours != T_MAX) && (this.checkVictoire() == CONTINU))
+		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
 			do
 			{
@@ -131,7 +137,7 @@ public class Partie
 			while (!saisieOk);
 			System.out.println(this.grille);
 
-			if (this.checkVictoire() == 0)
+			if (this.checkVictoire(NBPIONS) == 0)
 			{
 				do
 				{
@@ -159,78 +165,99 @@ public class Partie
 			this.nbTours++; // tour suivant
 		}
 
-		return this.checkVictoire();
+		return this.checkVictoire(NBPIONS);
 	}
 
 	/**
 	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
-	 * 
+	 * @param nbPions le nombre de pions necessaire pour gagner
 	 * @return le vainqueur ou 0 pour continuer la partie
 	 */
-	public int checkVictoire()
+	public int checkVictoire(int nbPions)
 	{
 		int x, y;	// variable pour se déplacer dans le tableau ordonne et abscisse
 		int i;
 		int couleur;	// variable de vérification et résultat (joueur gagnant)
 
-		for (x = 0; x < 7; x++)		// check des colonnes de gauche a droite
+		for (x = 0; x < Grille.X_MAX ; x++)		// check des colonnes de gauche a droite
 		{
-			if ((this.grille.grille[x][2] != 0) && (this.grille.grille[x][2] == this.grille.grille[x][3]))
+			for(y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++)
 			{
-				couleur = this.grille.grille[x][2];
-				if (couleur == this.grille.grille[x][4])
+				if (this.grille.grille[x][y] != Grille.VIDE)
 				{
-					if ((couleur == this.grille.grille[x][5]) || (couleur == this.grille.grille[x][1]))
+					i = 0;
+					couleur = this.grille.grille[x][y];
+					while((i < nbPions-1) && (this.grille.grille[x][y+i] == couleur) )
+					{
+						i++;
+					}
+					if ((i == nbPions-1) && (this.grille.grille[x][y+i] == couleur))
+					{
 						return couleur;
+					}
 				}
-				else if ((couleur == this.grille.grille[x][1]) && (couleur == this.grille.grille[x][0]))
-					return couleur;
 			}
 		}
 
-		for (y = 0; y < 6; y++) 	// check des lignes de bas en haut
+		for (y = 0; y < Grille.Y_MAX ; y++) 	// check des lignes de bas en haut
 		{
-			if (this.grille.grille[3][y] != 0)
+			for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
 			{
-				couleur = this.grille.grille[3][y];
-				if ((couleur == this.grille.grille[2][y]) && (couleur == this.grille.grille[1][y])
-						&& (couleur == this.grille.grille[0][y]))
-					return couleur;
-				if ((couleur == this.grille.grille[2][y]) && (couleur == this.grille.grille[1][y])
-						&& (couleur == this.grille.grille[4][y]))
-					return couleur;
-				if ((couleur == this.grille.grille[2][y]) && (couleur == this.grille.grille[4][y])
-						&& (couleur == this.grille.grille[5][y]))
-					return couleur;
-				if ((couleur == this.grille.grille[4][y]) && (couleur == this.grille.grille[5][y])
-						&& (couleur == this.grille.grille[6][y]))
-					return couleur;
+				if (this.grille.grille[x][y] != Grille.VIDE)
+				{
+					i = 0;
+					couleur = this.grille.grille[x][y];
+					while((i < nbPions-1) && (this.grille.grille[x+i][y] == couleur) )
+					{
+						i++;
+					}
+					if ((i == nbPions-1) && (this.grille.grille[x+i][y] == couleur))
+					{
+						return couleur;
+					}
+				}
 			}
 		}
 
-		for (x = 0; x < 4; x++)	// check diagonale de gauche a droite
+		for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
 		{
-			for (i = 0; i < 3; i++)
+			for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
 			{
-				couleur = this.grille.grille[x][0];
-				if ((couleur == this.grille.grille[x][i]) && (couleur == this.grille.grille[x + 1][1 + i])
-						&& (couleur == this.grille.grille[x + 2][2 + i])
-						&& (couleur == this.grille.grille[x + 3][3 + i]))
-					return couleur;
+				if (this.grille.grille[x][y] != Grille.VIDE)
+				{
+					i = 0;
+					couleur = this.grille.grille[x][y];
+					while((i < nbPions-1) && (this.grille.grille[x+i][y+i] == couleur) )
+					{
+						i++;
+					}
+					if ((i == nbPions-1) && (this.grille.grille[x+i][y+i] == couleur))
+					{
+						return couleur;
+					}
+				}
 			}
 		}
-
-		for (x = 6; x > 3; x++)	// check diagonale de droite a gauche
+		
+		for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
 		{
-			for (i = 0; i < 3; i++)
+			for(x = Grille.X_MAX-1 ; x > (nbPions -1) ; x--)
 			{
-				couleur = this.grille.grille[x][0];
-				if ((couleur == this.grille.grille[x][i]) && (couleur == this.grille.grille[x - 1][1 + i])
-						&& (couleur == this.grille.grille[x - 2][2 + i])
-						&& (couleur == this.grille.grille[x - 3][3 + i]))
-					return couleur;
+				if (this.grille.grille[x][y] != Grille.VIDE)
+				{
+					i = 0;
+					couleur = this.grille.grille[x][y];
+					while((i < nbPions-1) && (this.grille.grille[x-i][y+i] == couleur) )
+					{
+						i++;
+					}
+					if ((i == nbPions-1) && (this.grille.grille[x-i][y+i] == couleur))
+					{
+						return couleur;
+					}
+				}
 			}
-		}
+		}		
 
 		return CONTINU;
 	}
