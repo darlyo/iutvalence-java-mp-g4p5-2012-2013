@@ -48,17 +48,8 @@ public class Puissance4Test
 			{
 				case 1:
 				{
-					Partie partie;
-					int ordre = (int) Math.round(Math.random());
-					
-					if (ordre == 1)
-					{
-						partie = new Partie(j1.getName(), j2.getName());
-					}
-					else 
-					{
-						partie = new Partie(j2.getName(), j1.getName());
-					}
+					Partie partie = new Partie( j1.getName(),j2.getName());
+						
 					resultat = partie.lancer();
 					if (resultat == 1)
 					{

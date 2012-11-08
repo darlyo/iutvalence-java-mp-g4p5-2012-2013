@@ -66,6 +66,8 @@ public class Partie
 	 */
 	private String player2;
 
+	
+
 	// ************* CONSTRUCTEUR ****************
 
 	/**
@@ -77,7 +79,9 @@ public class Partie
 	 *            : nom du joueur 2
 	 */
 	public Partie(String player1, String player2)
-	{
+	{  
+		
+	
 		if (player1 != "")
 			this.player1 = player1;
 		else
@@ -106,7 +110,23 @@ public class Partie
 	{
 		int numColone;
 		boolean saisieOk;
-
+		int ordre = (int) Math.round(Math.random());
+		System.out.println(ordre);
+		String playertemp;
+		int jtemp;
+		int resultat;
+		
+		if (ordre == 1)
+		{   
+			playertemp = this.player2; // Echange des joueurs
+			this.player2 = this.player1;
+			this.player1 = playertemp;
+			
+			jtemp = this.j2; // encahnge du numéro des joueurs
+			this.j2 = this.j1;
+			this.j1= jtemp;				
+		}
+		
 		this.grille.toString();
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
@@ -114,7 +134,8 @@ public class Partie
 			{
 				// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
 				// FIXME commencer par faire une implémentation aléatoire du joueur
-				numColone = new Saisie(this.player1).getC();
+				//numColone = new Saisie(this.player1).getC();
+				numColone = (int)(Math.round(Math.random()*6));
 				try
 				{
 					saisieOk = true;
@@ -141,7 +162,8 @@ public class Partie
 			{
 				do
 				{
-					numColone = new Saisie(this.player2).getC();
+					//numColone = new Saisie(this.player2).getC();
+					numColone = (int)(Math.round(Math.random()*6));
 					try
 					{
 						this.grille.joue(this.j2, numColone);
@@ -164,7 +186,18 @@ public class Partie
 
 			this.nbTours++; // tour suivant
 		}
-
+		
+		resultat = this.checkVictoire(NBPIONS);
+		if ( resultat == 1)
+		{
+			System.out.println("Le joueur 1 a gagné");
+		}
+		else if (resultat == 2)
+		{
+			System.out.println("Le joueur 2 a gagné");
+		}
+		else
+			System.out.println("Match nul");
 		return this.checkVictoire(NBPIONS);
 	}
 
