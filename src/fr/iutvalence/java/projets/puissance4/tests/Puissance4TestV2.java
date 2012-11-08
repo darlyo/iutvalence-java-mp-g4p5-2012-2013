@@ -3,7 +3,7 @@ package fr.iutvalence.java.projets.puissance4.tests;
 import fr.iutvalence.java.projets.puissance4.Joueur;
 import fr.iutvalence.java.projets.puissance4.Partie;
 
-
+// TO DELETE : TEST DE PUSH
 /**
  * La classe contenant le lancement du jeu version la plus simple
  * 
