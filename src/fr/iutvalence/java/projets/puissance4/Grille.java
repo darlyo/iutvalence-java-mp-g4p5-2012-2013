@@ -48,7 +48,6 @@ public class Grille
 		}
 	}
 
-	// FIXME (FIXED) remplacer le type de retour par void puisqu'une exception est déjà soulevée en cas d'erreur (et modifier la documentation)
 	/**
 	 * Ajoute un jeton dans la colone donner en parametre par le joueur et renvoie PLEIN si on peut pas jouer
 	 * 
@@ -58,15 +57,14 @@ public class Grille
 	 *            : numero de la colonne ou on ajoute un jeton
 	 * @throws ColonnePleineException
 	 *             traite le cas ou la colonne est pleine
-	 * @throws ColonneNotExisteException 
+	 * @throws ColonneInexistanteException 
 	 * 				traite le cas ou la colone n'existe pas
 	 */
-	// FIXME  (FIXED) soulever une autre exception si la colonne n'existe pas
-	public void joue(int joueur, int numColone) throws ColonnePleineException, ColonneNotExisteException
+	public void joue(int joueur, int numColone) throws ColonnePleineException, ColonneInexistanteException
 	{
 		int i = 0;
 		if ((numColone < 0 ) || ( numColone > 6))
-				throw new ColonneNotExisteException();
+				throw new ColonneInexistanteException();
 
 		for (i = 0; i < Y_MAX; i++)
 		{
@@ -79,16 +77,12 @@ public class Grille
 		if (i == Y_MAX)
 			throw new ColonnePleineException();
 	}
-
-	// FIXME (FIXED) corriger le commentaire : indiquer le contenu de la chaîne retournée
-	
-	 // redéfinition de la méthode toString pour afficher le contenu de l'objet grille a l'aide d'une chaine
-
 	 
 	/**
-	 * @see java.lang.Object#toString()
-	 * redéfinition de la méthode toString pour afficher le contenu de l'objet grille a 
+	 * Redéfinition de la méthode toString pour afficher le contenu de l'objet grille a 
 	 * l'aide d'une chaine sous la forme d'un tableau
+	 * @see java.lang.Object#toString()
+	 *
 	 */
 	public String toString()
 	{
@@ -129,13 +123,12 @@ public class Grille
 	 * @param y
 	 *            ordonnée de la case
 	 * @return valeur de la case
-	 * @throws CaseNotExisteException crée une exception si la case n'existe pas
+	 * @throws CaseInexistanteException crée une exception si la case n'existe pas
 	 */
-	// FIXME (FIXED) soulever une exception si la case n'existe pas 
-	public int getCase(int x, int y) throws CaseNotExisteException
+	public int getCase(int x, int y) throws CaseInexistanteException
 	{
 		if ((x < 0) || (x > X_MAX) || (y < 0) || (y > Y_MAX))
-			throw new CaseNotExisteException();
+			throw new CaseInexistanteException();
 		else
 			return this.grille[x][y];
 	}
@@ -149,14 +142,13 @@ public class Grille
 	 *            ordonnée de la case
 	 * @param v
 	 *            valeur de la case
-	 * @throws CaseNotExisteException crée une exception si la case n'existe pas
+	 * @throws CaseInexistanteException crée une exception si la case n'existe pas
 	 */
-	// FIXME (FIXED) ajouter une méthode pour modifier le contenu d'une case de la grille
 
-	public void setCase(int x, int y, int v) throws CaseNotExisteException
+	public void setCase(int x, int y, int v) throws CaseInexistanteException
 	{
 		if ((x < 0) || (x > X_MAX) || (y < 0) || (y > Y_MAX))
-			throw new CaseNotExisteException();
+			throw new CaseInexistanteException();
 		else
 			this.grille[x][y] = v;
 	}

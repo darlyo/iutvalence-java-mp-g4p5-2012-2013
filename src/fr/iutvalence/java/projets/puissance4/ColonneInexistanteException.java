@@ -5,7 +5,7 @@ package fr.iutvalence.java.projets.puissance4;
  * @author mainguene kevin marie joris
  */
 @SuppressWarnings("serial")
-public class ColonneNotExisteException extends Exception
+public class ColonneInexistanteException extends Exception
 {
 
 }

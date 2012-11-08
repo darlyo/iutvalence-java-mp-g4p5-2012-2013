@@ -33,8 +33,6 @@ public class Partie
 	/**
 	 * nombre de tours joués
 	 */
-
-	// FIXME ( FIXED) renommer l'attribut (il peut y avoir plusieurs tours ;-) )
 	private int nbTours;
 
 	/**
@@ -108,7 +106,7 @@ public class Partie
 		{
 			do
 			{
-				// FIXME (NOT FIXED) se rendre indépendant de l'interaction avec les joueurs (à discuter !)
+				// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
 				// FIXME commencer par faire une implémentation aléatoire du joueur
 				numColone = new Saisie(this.player1).getC();
 				try
@@ -118,12 +116,12 @@ public class Partie
 				}
 				catch (ColonnePleineException e)
 				{
+					// FIXME pas de sortie console dans partie !!! (à discuter)
 					System.out.println("La colonne est pleine, choisissez une autre colonne.");
 					
-					// FIXME (FIXED) on peut se passer de cette constante, faire autrement
 					saisieOk = PLEIN;
 				}
-				catch (ColonneNotExisteException e)
+				catch (ColonneInexistanteException e)
 				{
 					System.out.println("La colonne n'existe pas, choisissez une autre colonne.");
 					
@@ -147,7 +145,7 @@ public class Partie
 						System.out.println("La colonne est pleine choisissez une autre colonne.");
 						saisieOk = PLEIN;
 					}
-					catch (ColonneNotExisteException e)
+					catch (ColonneInexistanteException e)
 					{
 						System.out.println("La colonne n'existe pas, choisissez une autre colonne.");
 						

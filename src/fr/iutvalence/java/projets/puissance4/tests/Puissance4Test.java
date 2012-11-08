@@ -10,7 +10,6 @@ import fr.iutvalence.java.projets.puissance4.Partie;
  * 
  * @author mainguene kevin Marie joris
  */
-// FIXME (FIXED) renommer la classe
 public class Puissance4Test
 {
 	// FIXME ce n'est pas dans cette classe qu'il faut gérer l'algorithmique de la partie, mais dans la classe Partie.

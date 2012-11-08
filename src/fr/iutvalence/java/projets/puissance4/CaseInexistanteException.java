@@ -5,7 +5,7 @@ package fr.iutvalence.java.projets.puissance4;
  * @author mainguene kevin marie joris
  */
 @SuppressWarnings("serial")
-public class CaseNotExisteException extends Exception
+public class CaseInexistanteException extends Exception
 {
 
 }
