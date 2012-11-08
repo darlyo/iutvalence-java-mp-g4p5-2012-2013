@@ -16,14 +16,9 @@ public class Partie
 	private final static boolean PLEIN = false;
 	
 	/**
-	 * ERRORCOLONNE boolean qui indique false si la colonne n'existe pas
-	 */
-	private final static boolean ERRORCOLONNE = false;
-	
-	/**
 	 * T_MAX est le nombre maximal de tours qu'une partie peut durer
 	 */
-	private final static int T_MAX = 21;
+	private final static int T_MAX = 42;
 
 	/**
 	 * Informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
@@ -67,6 +62,11 @@ public class Partie
 	private String player2;
 
 	
+	/*
+	  String[] noms
+	  int joueurCourant = 0;
+	 */
+	
 
 	// ************* CONSTRUCTEUR ****************
 
@@ -80,8 +80,6 @@ public class Partie
 	 */
 	public Partie(String player1, String player2)
 	{  
-		
-	
 		if (player1 != "")
 			this.player1 = player1;
 		else
@@ -108,54 +106,36 @@ public class Partie
 	 */
 	public int lancer()
 	{
-		int numColone;
-		boolean saisieOk;
-		int ordre = (int) Math.round(Math.random());
-		System.out.println(ordre);
-		String playertemp;
-		int jtemp;
-		int resultat;
-		
-		if (ordre == 1)
-		{   
-			playertemp = this.player2; // Echange des joueurs
-			this.player2 = this.player1;
-			this.player1 = playertemp;
-			
-			jtemp = this.j2; // encahnge du numéro des joueurs
-			this.j2 = this.j1;
-			this.j1= jtemp;				
-		}
 		
 		this.grille.toString();
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
-			do
-			{
+			
 				// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
-				// FIXME commencer par faire une implémentation aléatoire du joueur
+				// FIXME  ( FIXED ) commencer par faire une implémentation aléatoire du joueur
+				
+			while (true)
+			{
 				//numColone = new Saisie(this.player1).getC();
-				numColone = (int)(Math.round(Math.random()*6));
+				int numColone = (int)(Math.round(Math.random()*6));
 				try
 				{
-					saisieOk = true;
-					this.grille.joue(this.j1, (int) (numColone));
+					if (this.nbTours % 2 == 0)
+						this.grille.joue(this.j1, (int) (numColone));
+					if (T_MAX % 2 == 1)
+						this.grille.joue(this.j2, (int) (numColone));
 				}
 				catch (ColonnePleineException e)
 				{
-					// FIXME pas de sortie console dans partie !!! (à discuter)
 					System.out.println("La colonne est pleine, choisissez une autre colonne.");
-					
-					saisieOk = PLEIN;
+					continue;
 				}
 				catch (ColonneInexistanteException e)
 				{
-					System.out.println("La colonne n'existe pas, choisissez une autre colonne.");
-					
-					saisieOk = ERRORCOLONNE;
-				};	
+					// le test a été effectué avant
+				}	
 			}
-			while (!saisieOk);
+			
 			System.out.println(this.grille);
 
 			if (this.checkVictoire(NBPIONS) == 0)
