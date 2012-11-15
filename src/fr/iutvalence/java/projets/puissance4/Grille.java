@@ -23,12 +23,12 @@ public class Grille
 	public static final int Y_MAX = 6;
 
 	
-	// FIXME déclarer en private
+	// FIXME (FIXED) déclarer en private
 	/**
 	 * définition d'une grille de 7 colonnes et 6 lignes on place 0;0 en bas a gauche contenant des entiers: 0 pour vide
 	 * ou 1 et 2 pour un joueur
 	 */
-	public int[][] grille;
+	private int[][] grille;
 
 	/**
 	 * crée une grille vide

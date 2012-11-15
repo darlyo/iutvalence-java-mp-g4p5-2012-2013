@@ -105,61 +105,39 @@ public class Partie
 	 */
 	public int lancer()
 	{
-		
-		this.grille.toString();
+		int resultat;
+		System.out.println(this.grille);
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
-		{		
-			while (true)
-			{
-				//numColone = new Saisie(this.player1).getC();
-				int numColone = (int)(Math.round(Math.random()*6));
-				try
-				{
-					if (this.nbTours % 2 == 0)
-						this.grille.joue(this.j1, (int) (numColone));
-					if (T_MAX % 2 == 1)
-						this.grille.joue(this.j2, (int) (numColone));
-				}
-				catch (ColonnePleineException e)
-				{
-					// FIXME pas d'affichage ici ! il faut que cela reboucle tout seul
-					System.out.println("La colonne est pleine, choisissez une autre colonne.");
-					continue;
-				}
-				catch (ColonneInexistanteException e)
-				{
-					// le test a été effectué avant
-				}	
-			}
+		{
 			
-			System.out.println(this.grille);
+			// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
+			// FIXME  ( FIXED ) commencer par faire une implémentation aléatoire du joueur
 
-			if (this.checkVictoire(NBPIONS) == 0)
+			//numColone = new Saisie(this.player1).getC();
+			int numColone = (int)(Math.round(Math.random()*6));
+			try
 			{
-				do
+				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
 				{
-					//numColone = new Saisie(this.player2).getC();
-					numColone = (int)(Math.round(Math.random()*6));
-					try
-					{
-						this.grille.joue(this.j2, numColone);
-					}
-					catch (ColonnePleineException e)
-					{
-						System.out.println("La colonne est pleine choisissez une autre colonne.");
-						saisieOk = PLEIN;
-					}
-					catch (ColonneInexistanteException e)
-					{
-						System.out.println("La colonne n'existe pas, choisissez une autre colonne.");
-						
-						saisieOk = ERRORCOLONNE;
-					};	
+					this.grille.joue(this.j1, (int) (numColone));
 				}
-				while (!saisieOk);
-				System.out.println(this.grille);
+				else	// tour impaire le joueur 2 joue
+				{
+					this.grille.joue(this.j2, (int) (numColone));
+				}
 			}
-
+			catch (ColonnePleineException e)
+			{
+				System.out.println("La colonne est pleine, choisissez une autre colonne.");
+				continue;
+			}
+			catch (ColonneInexistanteException e)
+			{
+				// le test a été effectué avant
+				continue;					
+			}
+		
+			System.out.println(this.grille);
 			this.nbTours++; // tour suivant
 		}
 		
@@ -177,6 +155,7 @@ public class Partie
 		return this.checkVictoire(NBPIONS);
 	}
 
+
 	/**
 	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
 	 * @param nbPions le nombre de pions necessaire pour gagner
@@ -188,84 +167,92 @@ public class Partie
 		int i;
 		int couleur;	// variable de vérification et résultat (joueur gagnant)
 
-		for (x = 0; x < Grille.X_MAX ; x++)		// check des colonnes de gauche a droite
+		try
 		{
-			for(y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++)
+			for (x = 0; x < Grille.X_MAX ; x++)		// check des colonnes de gauche a droite
 			{
-				if (this.grille.grille[x][y] != Grille.VIDE)
+				for(y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++)
 				{
-					i = 0;
-					couleur = this.grille.grille[x][y];
-					while((i < nbPions-1) && (this.grille.grille[x][y+i] == couleur) )
+					if (this.grille.getCase(x, y)!= Grille.VIDE)
 					{
-						i++;
-					}
-					if ((i == nbPions-1) && (this.grille.grille[x][y+i] == couleur))
-					{
-						return couleur;
+						i = 0;
+						couleur = this.grille.getCase(x, y);
+						while((i < nbPions-1) && (this.grille.getCase(x, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.grille.getCase(x, y+i) == couleur))
+						{
+							return couleur;
+						}
 					}
 				}
 			}
-		}
 
-		for (y = 0; y < Grille.Y_MAX ; y++) 	// check des lignes de bas en haut
-		{
-			for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
+			for (y = 0; y < Grille.Y_MAX ; y++) 	// check des lignes de bas en haut
 			{
-				if (this.grille.grille[x][y] != Grille.VIDE)
+				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
 				{
-					i = 0;
-					couleur = this.grille.grille[x][y];
-					while((i < nbPions-1) && (this.grille.grille[x+i][y] == couleur) )
+					if (this.grille.getCase(x, y)!= Grille.VIDE)
 					{
-						i++;
-					}
-					if ((i == nbPions-1) && (this.grille.grille[x+i][y] == couleur))
-					{
-						return couleur;
+						i = 0;
+						couleur = this.grille.getCase(x, y);
+						while((i < nbPions-1) && (this.grille.getCase(x+i, y)== couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.grille.getCase(x+i, y) == couleur))
+						{
+							return couleur;
+						}
 					}
 				}
 			}
-		}
 
-		for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
-		{
-			for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
+			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
 			{
-				if (this.grille.grille[x][y] != Grille.VIDE)
+				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
 				{
-					i = 0;
-					couleur = this.grille.grille[x][y];
-					while((i < nbPions-1) && (this.grille.grille[x+i][y+i] == couleur) )
+					if (this.grille.getCase(x, y) != Grille.VIDE)
 					{
-						i++;
+						i = 0;
+						couleur = this.grille.getCase(x, y);
+						while((i < nbPions-1) && (this.grille.getCase(x+i, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.grille.getCase(x+i, y+i) == couleur))
+						{
+							return couleur;
+						}
 					}
-					if ((i == nbPions-1) && (this.grille.grille[x+i][y+i] == couleur))
+				}
+			}
+			
+			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
+			{
+				for(x = Grille.X_MAX-1 ; x > (nbPions -1) ; x--)
+				{
+					if (this.grille.getCase(x, y) != Grille.VIDE)
 					{
-						return couleur;
+						i = 0;
+						couleur = this.grille.getCase(x, y);
+						while((i < nbPions-1) && (this.grille.getCase(x-i, y) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.grille.getCase(x-i, y+i) == couleur))
+						{
+							return couleur;
+						}
 					}
 				}
 			}
 		}
-		
-		for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
+		catch (CaseInexistanteException e)
 		{
-			for(x = Grille.X_MAX-1 ; x > (nbPions -1) ; x--)
-			{
-				if (this.grille.grille[x][y] != Grille.VIDE)
-				{
-					i = 0;
-					couleur = this.grille.grille[x][y];
-					while((i < nbPions-1) && (this.grille.grille[x-i][y+i] == couleur) )
-					{
-						i++;
-					}
-					if ((i == nbPions-1) && (this.grille.grille[x-i][y+i] == couleur))
-					{
-						return couleur;
-					}
-				}
-			}
+			// case correcte car controlé avant
+			//on ignore donc l'erreur
 		}		
 
 		return CONTINU;
