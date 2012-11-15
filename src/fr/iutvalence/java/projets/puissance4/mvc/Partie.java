@@ -50,16 +50,6 @@ public class Partie
 	 */
 	private int j2;
 
-	/**
-	 * Nom du joueur 1
-	 */
-	private String player1;
-
-	/**
-	 * Nom du joueur 2
-	 */
-	private String player2;
-
 	
 	/*
 	  String[] noms
@@ -78,15 +68,7 @@ public class Partie
 	 *            : nom du joueur 2
 	 */
 	public Partie(String player1, String player2)
-	{  
-		if (player1 != "")
-			this.player1 = player1;
-		else
-			this.player1 = "Joueur 1";
-		if (player2 != "")
-			this.player2 = player2;
-		else
-			this.player2 = "Joueur 2";
+	{
 		this.j1 = 1;
 		this.j2 = 2;
 		this.nbTours = 0;
