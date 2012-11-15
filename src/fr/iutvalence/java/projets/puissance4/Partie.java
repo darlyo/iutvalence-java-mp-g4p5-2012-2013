@@ -1,6 +1,5 @@
 package fr.iutvalence.java.projets.puissance4;
 
-// FIXME  FIXED !!! corriger le commentaire : ouvrir un bescherelle ou trouver dans le dictionnaire le verbe "géstionner" (bon courage !) ;-)
 /**
  * lance une partie et la gère
  * 
@@ -109,11 +108,7 @@ public class Partie
 		
 		this.grille.toString();
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
-		{
-			
-				// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
-				// FIXME  ( FIXED ) commencer par faire une implémentation aléatoire du joueur
-				
+		{		
 			while (true)
 			{
 				//numColone = new Saisie(this.player1).getC();
@@ -127,6 +122,7 @@ public class Partie
 				}
 				catch (ColonnePleineException e)
 				{
+					// FIXME pas d'affichage ici ! il faut que cela reboucle tout seul
 					System.out.println("La colonne est pleine, choisissez une autre colonne.");
 					continue;
 				}

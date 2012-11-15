@@ -12,7 +12,7 @@ import fr.iutvalence.java.projets.puissance4.Partie;
  */
 public class Puissance4Test
 {
-	// FIXME ( FIXED voir test V2 ) ce n'est pas dans cette classe qu'il faut gérer l'algorithmique de la partie, mais dans la classe Partie.
+
 	// Ici, on doit ce contenter de créer une partie, de la démarrer, et d'attendre qu'elle se termine
 	/**
 	 * Menu et lancement des fonctionnalités du jeux
