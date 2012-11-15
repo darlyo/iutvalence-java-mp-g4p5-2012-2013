@@ -106,6 +106,7 @@ public class Partie
 	public int lancer()
 	{
 		int resultat;
+		int numColone;
 		System.out.println(this.grille);
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
@@ -114,7 +115,7 @@ public class Partie
 			// FIXME  ( FIXED ) commencer par faire une implémentation aléatoire du joueur
 
 			//numColone = new Saisie(this.player1).getC();
-			int numColone = (int)(Math.round(Math.random()*6));
+			numColone = (int)(Math.round(Math.random()*6));
 			try
 			{
 				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
@@ -152,7 +153,7 @@ public class Partie
 		}
 		else
 			System.out.println("Match nul");
-		return this.checkVictoire(NBPIONS);
+		return resultat;
 	}
 
 
@@ -263,7 +264,7 @@ public class Partie
 	 * @param nbPions le nombre de pions a aligner pour gagner
 	 * @return le gagnant ou 0  pour continuer ou -1 si le case n'existe pas ( plus ou moins impossible )
 	 */
-	public int checkvictoryv2(int x, int y, int nbPions) 
+	public int checkvictoryV2(int x, int y, int nbPions) 
 	{   
 		int couleur;
 		

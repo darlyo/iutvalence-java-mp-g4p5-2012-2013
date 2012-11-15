@@ -57,12 +57,13 @@ public class Grille
 	 *            : 1 ou 2 en fonction du joueur qui joue
 	 * @param numColone
 	 *            : numero de la colonne ou on ajoute un jeton
+	 * @return la ligne dans la quelle le pion est insérer
 	 * @throws ColonnePleineException
 	 *             traite le cas ou la colonne est pleine
 	 * @throws ColonneInexistanteException 
 	 * 				traite le cas ou la colone n'existe pas
 	 */
-	public void joue(int joueur, int numColone) throws ColonnePleineException, ColonneInexistanteException
+	public int joue(int joueur, int numColone) throws ColonnePleineException, ColonneInexistanteException
 	{
 		int i = 0;
 		if ((numColone < 0 ) || ( numColone > 6))
@@ -78,6 +79,7 @@ public class Grille
 		}
 		if (i == Y_MAX)
 			throw new ColonnePleineException();
+		return i;
 	}
 	 
 	/**
