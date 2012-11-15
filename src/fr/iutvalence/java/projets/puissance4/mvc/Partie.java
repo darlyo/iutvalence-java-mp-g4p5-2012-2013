@@ -1,4 +1,9 @@
-package fr.iutvalence.java.projets.puissance4;
+package fr.iutvalence.java.projets.puissance4.mvc;
+
+import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
+import fr.iutvalence.java.projets.puissance4.ColonneInexistanteException;
+import fr.iutvalence.java.projets.puissance4.ColonnePleineException;
+import fr.iutvalence.java.projets.puissance4.Grille;
 
 /**
  * lance une partie et la gère
@@ -8,11 +13,6 @@ package fr.iutvalence.java.projets.puissance4;
 public class Partie
 {
 	// ************** VARIABLES ******************
-
-	/**
-	 * PLEIN boolean qui permet d'indiquer si la colone ou on vient de jouer est pleine
-	 */
-	private final static boolean PLEIN = false;
 	
 	/**
 	 * T_MAX est le nombre maximal de tours qu'une partie peut durer

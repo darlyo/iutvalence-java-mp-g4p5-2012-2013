@@ -1,7 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.tests;
 
 import fr.iutvalence.java.projets.puissance4.Joueur;
-import fr.iutvalence.java.projets.puissance4.Partie;
+import fr.iutvalence.java.projets.puissance4.nonmvc.Partie;
 
 // TO DELETE : TEST DE PUSH
 /**
@@ -9,7 +9,7 @@ import fr.iutvalence.java.projets.puissance4.Partie;
  * 
  * @author mainguene kevin Marie joris
  */
-public class Puissance4TestV2
+public class Puissance4nonMVCTest
 {
 
 	/**

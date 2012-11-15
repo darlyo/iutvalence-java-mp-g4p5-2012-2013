@@ -3,7 +3,7 @@ package fr.iutvalence.java.projets.puissance4.tests;
 import java.util.Scanner;
 
 import fr.iutvalence.java.projets.puissance4.Joueur;
-import fr.iutvalence.java.projets.puissance4.Partie;
+import fr.iutvalence.java.projets.puissance4.nonmvc.Partie;
 
 /**
  * La classe contenant le lancement du jeu
