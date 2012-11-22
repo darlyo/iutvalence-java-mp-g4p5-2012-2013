@@ -1,6 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
+import fr.iutvalence.java.projets.puissance4.Grille;
 
 /**
  * classe Vue pour l'affichage 
@@ -8,13 +9,13 @@ import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
  * @author mainguene kevin marie joris
  */
 
-public class ConsoleVue implements InterfaceVue
+public class VueConsole implements InterfaceVue
 {
 
 	@Override
-	public void affichegrille()
+	public void affichegrille(Grille grille)
 	{
-		// TODO Auto-generated method stub
+		System.out.println(grille);
 	}
 
 	@Override
@@ -27,14 +28,13 @@ public class ConsoleVue implements InterfaceVue
 	@Override
 	public void messageTour(String nom)
 	{
-		// TODO Auto-generated method stub
-		
+		System.out.println("C'est a "+nom+" de jouer.");
 	}
 
 	@Override
 	public void messageVictoire(String nom)
 	{
-		// TODO Auto-generated method stub
+		System.out.println("Victoire de "+nom+", bravo.");
 		
 	}
 	

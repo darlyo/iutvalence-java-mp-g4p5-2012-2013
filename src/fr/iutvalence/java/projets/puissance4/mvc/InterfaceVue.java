@@ -1,6 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
+import fr.iutvalence.java.projets.puissance4.Grille;
 
 /**
  * Interface pour l'affichage 
@@ -11,8 +12,9 @@ public interface InterfaceVue
 {
 	/**
 	 * affiche une grille vide
+	 * @param grille la grille a afficher
 	 */
-	void affichegrille();
+	void affichegrille(Grille grille);
 	
 	/**
 	 * @param ligne ligne ou est ajoute le pion
