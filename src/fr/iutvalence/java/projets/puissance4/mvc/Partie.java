@@ -98,6 +98,9 @@ public class Partie
 		int resultat;
 		int numColone;
 		System.out.println(this.grille);
+		InterfaceVue vue1, vue2;
+		vue1 = this.player1.getVue();
+		vue2 = this.player2.getVue();
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
 			
@@ -136,25 +139,46 @@ public class Partie
 				// le test a été effectué avant
 				continue;					
 			}
-		
+		    
+			if (vue1 == vue2)
+				this.player1.getVue().affichegrille(this.grille);
+			else	
+			{		
 			this.player1.getVue().affichegrille(this.grille);
 			this.player2.getVue().affichegrille(this.grille);
+			}
 			this.nbTours++; // tour suivant
 		}
 		
 		resultat = this.checkVictoire(NBPIONS);
-		if ( resultat == 1)
+		if (vue1 == vue2)
 		{
-			this.player1.getVue().messageVictoire(this.player1.getName());
-			this.player2.getVue().messageVictoire(this.player1.getName());
-		}
-		else if (resultat == 2)
-		{
-			this.player1.getVue().messageVictoire(this.player2.getName());
-			this.player2.getVue().messageVictoire(this.player2.getName());
+			if ( resultat == 1)
+			{
+				this.player1.getVue().messageVictoire(this.player1.getName());
+			}
+			else if (resultat == 2)
+			{
+				this.player1.getVue().messageVictoire(this.player2.getName());
+			}
+			else
+				System.out.println("Match nul");
 		}
 		else
-			System.out.println("Match nul");
+		{
+			if ( resultat == 1)
+			{
+				this.player1.getVue().messageVictoire(this.player1.getName());
+				this.player2.getVue().messageVictoire(this.player1.getName());
+			}
+			else if (resultat == 2)
+			{
+				this.player1.getVue().messageVictoire(this.player2.getName());
+				this.player2.getVue().messageVictoire(this.player2.getName());
+			}
+			else
+				System.out.println("Match nul");
+		}
 		return resultat;
 	}
 

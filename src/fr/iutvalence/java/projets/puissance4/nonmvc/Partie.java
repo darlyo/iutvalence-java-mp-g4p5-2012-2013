@@ -112,7 +112,6 @@ public class Partie
 		{
 			
 			// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
-			// FIXME  ( FIXED ) commencer par faire une implémentation aléatoire du joueur
 
 			//numColone = new Saisie(this.player1).getC();
 			numColone = (int)(Math.round(Math.random()*6));

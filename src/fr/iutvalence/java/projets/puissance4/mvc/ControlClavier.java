@@ -15,7 +15,7 @@ public class ControlClavier implements InterfaceControl
 	{
 		Scanner sc = new Scanner(System.in);
 		int colone = sc.nextInt();
-		while ((colone < 0) || (colone >= borne))
+		while ((colone < 0) || (colone >= borne+1))
 			colone = sc.nextInt();
 		
 		return colone-1;

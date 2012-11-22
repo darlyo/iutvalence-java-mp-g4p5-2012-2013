@@ -13,7 +13,7 @@ import fr.iutvalence.java.projets.puissance4.Grille;
 public class ControlIA implements InterfaceControl
 {
 
-	@Override
+
 	public int saisie(int borne, Partie partie)
 	{
 		int nbCoup = 8;
