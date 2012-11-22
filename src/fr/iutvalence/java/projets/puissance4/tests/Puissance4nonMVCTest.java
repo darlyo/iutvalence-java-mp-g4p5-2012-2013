@@ -1,9 +1,12 @@
 package fr.iutvalence.java.projets.puissance4.tests;
 
-import fr.iutvalence.java.projets.puissance4.Joueur;
+import fr.iutvalence.java.projets.puissance4.mvc.ControlAlea;
+import fr.iutvalence.java.projets.puissance4.mvc.InterfaceControl;
+import fr.iutvalence.java.projets.puissance4.mvc.InterfaceVue;
+import fr.iutvalence.java.projets.puissance4.mvc.Joueur;
+import fr.iutvalence.java.projets.puissance4.mvc.VueConsole;
 import fr.iutvalence.java.projets.puissance4.nonmvc.Partie;
 
-// TO DELETE : TEST DE PUSH
 /**
  * La classe contenant le lancement du jeu version la plus simple
  * 
@@ -18,8 +21,13 @@ public class Puissance4nonMVCTest
 	 */
 	public static void main(String[] args)
 	{
-		Joueur j1 = new Joueur();
-		Joueur j2 = new Joueur();
+		InterfaceControl cj1 = new ControlAlea();
+		InterfaceControl cj2 = new ControlAlea();
+		InterfaceVue vj1 = new VueConsole();
+		InterfaceVue vj2 = new VueConsole();
+		
+		Joueur j1 = new Joueur(cj1, vj1);
+		Joueur j2 = new Joueur(cj2, vj2);
 
 		Partie partie;
 		int ordre = (int) Math.round(Math.random());

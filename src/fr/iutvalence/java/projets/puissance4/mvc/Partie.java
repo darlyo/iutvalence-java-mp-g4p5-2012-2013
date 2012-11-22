@@ -96,16 +96,16 @@ public class Partie
 			// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
 			// FIXME  ( FIXED ) commencer par faire une implémentation aléatoire du joueur
 
-			//numColone = new Saisie(this.player1).getC();
-			numColone = (int)(Math.round(Math.random()*6));
 			try
 			{
 				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
 				{
+					numColone = j1
 					this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
+					
 					this.grille.joue(this.j2, (int) (numColone));
 				}
 			}
@@ -220,7 +220,7 @@ public class Partie
 					{
 						i = 0;
 						couleur = this.grille.getCase(x, y);
-						while((i < nbPions-1) && (this.grille.getCase(x-i, y) == couleur) )
+						while((i < nbPions-1) && (this.grille.getCase(x-i, y+i) == couleur) )
 						{
 							i++;
 						}
