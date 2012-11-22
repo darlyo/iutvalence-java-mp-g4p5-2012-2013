@@ -50,7 +50,16 @@ public class Partie
 	 */
 	private int j2;
 
+	/**
+	 * Le joueur 1
+	 */
+	private Joueur player1;
 	
+	/**
+	 * le joueur 2
+	 */
+	private Joueur player2;
+
 	/*
 	  String[] noms
 	  int joueurCourant = 0;
@@ -61,16 +70,15 @@ public class Partie
 
 	/**
 	 * Créer une partie vierge entre 2 joueurs
-	 * 
-	 * @param player1
-	 *            : nom du joueur 1
-	 * @param player2
-	 *            : nom du joueur 2
+	 * @param player1 : nom du joueur 1
+	 * @param player2 : nom du joueur 2
 	 */
-	public Partie(String player1, String player2)
+	public Partie(Joueur player1, Joueur player2)
 	{
 		this.j1 = 1;
 		this.j2 = 2;
+		this.player1 = player1;
+		this.player2 = player2;
 		this.nbTours = 0;
 		this.grille = new Grille();
 	}
@@ -100,18 +108,25 @@ public class Partie
 			{
 				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
 				{
-					numColone = j1
+					numColone = this.player1.getCtrl().saisie(Grille.X_MAX);
 					this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
-					
+					numColone = this.player2.getCtrl().saisie(Grille.X_MAX);
 					this.grille.joue(this.j2, (int) (numColone));
 				}
 			}
 			catch (ColonnePleineException e)
 			{
-				System.out.println("La colonne est pleine, choisissez une autre colonne.");
+				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
+				{
+					this.player1.getVue().messageColPleine();
+				}
+				else	// tour impaire le joueur 2 joue
+				{
+					this.player2.getVue().messageColPleine();
+				}
 				continue;
 			}
 			catch (ColonneInexistanteException e)
@@ -120,7 +135,8 @@ public class Partie
 				continue;					
 			}
 		
-			System.out.println(this.grille);
+			this.player1.getVue().affichegrille(this.grille);
+			this.player2.getVue().affichegrille(this.grille);
 			this.nbTours++; // tour suivant
 		}
 		

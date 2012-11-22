@@ -25,14 +25,19 @@ public interface InterfaceVue
 	void ajoutePion(int ligne, int colone, int valeur)  throws  CaseInexistanteException;
 	
 	/**
-	 * affiche un popup qui annonce a qui c'est de jouer
+	 * affiche un message qui annonce a qui c'est de jouer
 	 * @param nom : nom du joueur à jouer
 	 */
 	void messageTour(String nom);
 	
 	/**
-	 * affiche un popup qui donner le vainqueur
+	 * affiche un message qui donner le vainqueur
 	 * @param nom :nom du vainqueur
 	 */
 	void messageVictoire(String nom);
+	
+	/**
+	 * affiche un message disant que la colone est pleine
+	 */
+	void messageColPleine();
 }

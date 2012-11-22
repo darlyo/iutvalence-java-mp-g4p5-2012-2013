@@ -37,5 +37,11 @@ public class VueConsole implements InterfaceVue
 		System.out.println("Victoire de "+nom+", bravo.");
 		
 	}
+
+	@Override
+	public void messageColPleine()
+	{
+		System.out.println("La colonne est pleine, choisissez une autre colonne.");
+	}
 	
 }
