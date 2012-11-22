@@ -116,6 +116,7 @@ public class Grille
 			}
 			chaine = chaine + "\n|---|---|---|---|---|---|---|\n";
 		}
+		chaine = chaine + "| 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n";
 		return chaine;
 	}
 
@@ -137,6 +138,19 @@ public class Grille
 			return this.grille[x][y];
 	}
 
+	
+	/**
+	 * @param x	colonne a tester	
+	 * @return	vrai si la colonne est pleinne sinon faux
+	 * @throws ColonneInexistanteException exception si la colonne est en dehors du tableau
+	 */
+	public boolean colPleine(int x) throws ColonneInexistanteException
+	{
+		if ((x < 0) || (x > X_MAX))
+			throw new ColonneInexistanteException();
+		else
+			return (this.grille[x][Y_MAX-1] != VIDE);
+	}
 	/**
 	 * modifie la valeur d'une case de la grille
 	 * 

@@ -38,7 +38,7 @@ public class Partie
 	/**
 	 * grille de jeu
 	 */
-	private Grille grille;
+	public Grille grille;
 
 	/**
 	 * valeur du pion identifiant le Joueur 1 d'une partie
@@ -108,12 +108,12 @@ public class Partie
 			{
 				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
 				{
-					numColone = this.player1.getCtrl().saisie(Grille.X_MAX);
+					numColone = this.player1.getCtrl().saisie(Grille.X_MAX, this);
 					this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
-					numColone = this.player2.getCtrl().saisie(Grille.X_MAX);
+					numColone = this.player2.getCtrl().saisie(Grille.X_MAX, this);
 					this.grille.joue(this.j2, (int) (numColone));
 				}
 			}
