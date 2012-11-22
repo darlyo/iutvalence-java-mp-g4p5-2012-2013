@@ -59,6 +59,8 @@ public class Joueur
 	{
 		this.playerName = nom;
 		this.nbVictoires = 0;
+		this.cj = cj;
+		this.vj = vj;
 	}
 
 	// ********* METHODE ********************

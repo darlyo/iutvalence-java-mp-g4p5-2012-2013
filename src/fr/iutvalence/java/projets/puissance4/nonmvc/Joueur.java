@@ -1,4 +1,4 @@
-package fr.iutvalence.java.projets.puissance4;
+package fr.iutvalence.java.projets.puissance4.nonmvc;
 
 /**
  * definition d'une classe joueur avec un nom et un nombre de victoire et defini les méthode pour modifier le nom et

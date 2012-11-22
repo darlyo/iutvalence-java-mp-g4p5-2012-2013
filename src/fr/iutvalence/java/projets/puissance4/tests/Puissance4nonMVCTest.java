@@ -1,7 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.tests;
 
 
-import fr.iutvalence.java.projets.puissance4.Joueur;
+import fr.iutvalence.java.projets.puissance4.nonmvc.Joueur;
 import fr.iutvalence.java.projets.puissance4.nonmvc.Partie;
 
 /**

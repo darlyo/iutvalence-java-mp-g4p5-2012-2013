@@ -1,6 +1,6 @@
 package fr.iutvalence.java.projets.puissance4.tests;
 
-import fr.iutvalence.java.projets.puissance4.mvc.ControlAlea;
+import fr.iutvalence.java.projets.puissance4.mvc.ControlClavier;
 import fr.iutvalence.java.projets.puissance4.mvc.ControlIA;
 import fr.iutvalence.java.projets.puissance4.mvc.InterfaceControl;
 import fr.iutvalence.java.projets.puissance4.mvc.InterfaceVue;
@@ -23,12 +23,12 @@ public class Puissance4MVCTest
 	public static void main(String[] args)
 	{
 		InterfaceControl cj1 = new ControlIA();
-		InterfaceControl cj2 = new ControlIA();
+		InterfaceControl cj2 = new ControlClavier();
 		InterfaceVue vj1 = new VueConsole();
 		InterfaceVue vj2 = new VueConsole();
 		
-		Joueur j1 = new Joueur(cj1, vj1);
-		Joueur j2 = new Joueur(cj2, vj2);
+		Joueur j1 = new Joueur("IA", cj1, vj1);
+		Joueur j2 = new Joueur("Joueur", cj2, vj2);
 
 		Partie partie;
 		int ordre = (int) Math.round(Math.random());

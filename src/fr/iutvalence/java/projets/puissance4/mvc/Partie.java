@@ -108,11 +108,13 @@ public class Partie
 			{
 				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
 				{
+					this.player1.getVue().messageTour(this.player1.getName());
 					numColone = this.player1.getCtrl().saisie(Grille.X_MAX, this);
 					this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
+					this.player2.getVue().messageTour(this.player2.getName());
 					numColone = this.player2.getCtrl().saisie(Grille.X_MAX, this);
 					this.grille.joue(this.j2, (int) (numColone));
 				}
@@ -143,11 +145,13 @@ public class Partie
 		resultat = this.checkVictoire(NBPIONS);
 		if ( resultat == 1)
 		{
-			System.out.println("Le joueur 1 a gagné");
+			this.player1.getVue().messageVictoire(this.player1.getName());
+			this.player2.getVue().messageVictoire(this.player1.getName());
 		}
 		else if (resultat == 2)
 		{
-			System.out.println("Le joueur 2 a gagné");
+			this.player1.getVue().messageVictoire(this.player2.getName());
+			this.player2.getVue().messageVictoire(this.player2.getName());
 		}
 		else
 			System.out.println("Match nul");
