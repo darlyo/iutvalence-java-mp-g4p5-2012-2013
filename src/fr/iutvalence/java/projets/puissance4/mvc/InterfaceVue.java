@@ -1,5 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
+import javax.swing.JFrame;
+
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
 import fr.iutvalence.java.projets.puissance4.Grille;
 
@@ -22,7 +24,7 @@ public interface InterfaceVue
 	 * @param valeur entier qui permet de déterminer la couleur du pions
 	 * @throws CaseInexistanteException gestion d'exception si la colonne n'existe pas
 	 */
-	void ajoutePion(int ligne, int colone, int valeur)  throws  CaseInexistanteException;
+	void ajoutePion( int ligne, int colone, int valeur)  throws  CaseInexistanteException;
 	
 	/**
 	 * affiche un message qui annonce a qui c'est de jouer
