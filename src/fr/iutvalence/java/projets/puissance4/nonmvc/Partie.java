@@ -96,7 +96,7 @@ public class Partie
 	// ****************** METHODE ************************
 
 	
-	// FIXME se rendre indépendant de l'affichage console
+
 	/**
 	 * lance une partie avec au maximun 21 tour le joueur 1 commence il pose son jeton, on affiche la grille et on
 	 * regarde si il a gagner apres de al meme maniere le joueur 2 joue.
@@ -110,8 +110,6 @@ public class Partie
 		System.out.println(this.grille);
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
-			
-			// FIXME se rendre indépendant de l'interaction avec les joueurs (à discuter !)
 
 			//numColone = new Saisie(this.player1).getC();
 			numColone = (int)(Math.round(Math.random()*6));
