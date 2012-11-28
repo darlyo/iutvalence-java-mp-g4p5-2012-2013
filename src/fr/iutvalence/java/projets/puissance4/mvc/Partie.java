@@ -98,7 +98,8 @@ public class Partie
 		int resultat;
 		int numColone;
 		// FIXME se rendre indépendant de l'affichage console
-		System.out.println(this.grille);
+		this.player1.getVue().affichegrille(this.grille);
+		this.player2.getVue().affichegrille(this.grille);
 		InterfaceVue vue1, vue2;
 		vue1 = this.player1.getVue();
 		vue2 = this.player2.getVue();
@@ -160,6 +161,7 @@ public class Partie
 			}
 			else
 				System.out.println("Match nul");
+			// TODO GERER msg defaite, par interface
 		}
 		else
 		{
@@ -175,6 +177,7 @@ public class Partie
 			}
 			else
 				System.out.println("Match nul");
+			// TODO gerer msg defaire via interface
 		}
 		return resultat;
 	}
