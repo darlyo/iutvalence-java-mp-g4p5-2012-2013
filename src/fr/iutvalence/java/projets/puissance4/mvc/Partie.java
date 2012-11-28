@@ -97,7 +97,7 @@ public class Partie
 	{
 		int resultat;
 		int numColone;
-		// FIXME se rendre indépendant de l'affichage console
+		// FIXME ( FIXED )se rendre indépendant de l'affichage console
 		this.player1.getVue().affichegrille(this.grille);
 		this.player2.getVue().affichegrille(this.grille);
 		InterfaceVue vue1, vue2;
@@ -150,35 +150,22 @@ public class Partie
 		
 		resultat = this.checkVictoire(NBPIONS);
 		if (vue1 == vue2)
-		{
+	
 			if ( resultat == 1)
 			{
 				this.player1.getVue().messageVictoire(this.player1.getName());
+				this.player2.getVue().messageDefaite(this.player1.getName());
 			}
 			else if (resultat == 2)
 			{
-				this.player1.getVue().messageVictoire(this.player2.getName());
-			}
-			else
-				System.out.println("Match nul");
-			// TODO GERER msg defaite, par interface
-		}
-		else
-		{
-			if ( resultat == 1)
-			{
-				this.player1.getVue().messageVictoire(this.player1.getName());
-				this.player2.getVue().messageVictoire(this.player1.getName());
-			}
-			else if (resultat == 2)
-			{
-				this.player1.getVue().messageVictoire(this.player2.getName());
+				this.player1.getVue().messageDefaite(this.player2.getName());
 				this.player2.getVue().messageVictoire(this.player2.getName());
 			}
 			else
-				System.out.println("Match nul");
-			// TODO gerer msg defaire via interface
-		}
+				if (vue1 == vue2)
+					this.player1.getVue().messageNul();
+		
+		
 		return resultat;
 	}
 

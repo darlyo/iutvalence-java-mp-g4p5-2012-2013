@@ -34,7 +34,7 @@ public class VueConsole implements InterfaceVue
 	@Override
 	public void messageVictoire(String nom)
 	{
-		System.out.println("Victoire de "+nom+", bravo.");
+		System.out.println(nom+"vous avez gagné cette manche, Bravo !");
 		
 	}
 
@@ -44,4 +44,19 @@ public class VueConsole implements InterfaceVue
 		System.out.println("La colonne est pleine, choisissez une autre colonne.");
 	}
 	
+	
+	/**
+	 * 
+	 */
+	public void messageDefaite(String nom)
+	{
+		System.out.println(nom+"vous avez perdu cette manche.");
+	}
+
+	public void messageNul()
+	{
+		System.out.println("Cette manche est nulle");
+	}
+
+
 }

@@ -42,4 +42,16 @@ public interface InterfaceVue
 	 * affiche un message disant que la colone est pleine
 	 */
 	void messageColPleine();
+	
+	
+	/**
+	 * affiche un message disant que le joueur a perdu la manche
+	 * @param nom 
+	 */
+	public void messageDefaite(String nom);
+	
+	/**
+	 * affiche un message disant que la manche est nulle
+	 */
+	public void messageNul();
 }

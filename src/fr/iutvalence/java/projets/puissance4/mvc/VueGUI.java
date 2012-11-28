@@ -49,5 +49,19 @@ public class VueGUI implements InterfaceVue
 		
 	}
 
+	@Override
+	public void messageDefaite(String nom)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void messageNul()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
