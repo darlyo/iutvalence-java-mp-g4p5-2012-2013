@@ -35,6 +35,9 @@ public class Joueur
 	 */
 	private InterfaceVue vj;
 	
+	/**
+	 * Fenetre associe au joueur
+	 */
 	private JFrame fenetre;
 	
 
@@ -132,6 +135,14 @@ public class Joueur
 	public InterfaceVue getVue()
 	{
 		return this.vj;
+	}
+	
+	/**
+	 * @return la fenetre du joueur
+	 */
+	public JFrame getFenetre()
+	{
+		return this.fenetre;		
 	}
 
 }

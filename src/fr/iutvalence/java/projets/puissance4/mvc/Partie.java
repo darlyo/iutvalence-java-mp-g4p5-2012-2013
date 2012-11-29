@@ -97,32 +97,35 @@ public class Partie
 	{
 		int resultat;
 		int numColone;
+		int ligne;
+		int tour;
 		// FIXME ( FIXED )se rendre indépendant de l'affichage console
-		this.player1.getVue().affichegrille(this.grille);
-		this.player2.getVue().affichegrille(this.grille);
+		this.player1.getVue().affichegrille(this.grille, this.player1.getFenetre());
+		this.player2.getVue().affichegrille(this.grille, this.player2.getFenetre());
 		InterfaceVue vue1, vue2;
 		vue1 = this.player1.getVue();
 		vue2 = this.player2.getVue();
 		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
 		{
+			tour = this.nbTours % 2;
 			try
 			{
-				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
+				if (tour == 0) //tour pair le joueur 1 joue
 				{
 					this.player1.getVue().messageTour(this.player1.getName());
 					numColone = this.player1.getCtrl().saisie(Grille.X_MAX, this);
-					this.grille.joue(this.j1, (int) (numColone));
+					ligne = this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
 					this.player2.getVue().messageTour(this.player2.getName());
 					numColone = this.player2.getCtrl().saisie(Grille.X_MAX, this);
-					this.grille.joue(this.j2, (int) (numColone));
+					ligne = this.grille.joue(this.j2, (int) (numColone));
 				}
 			}
 			catch (ColonnePleineException e)
 			{
-				if (this.nbTours % 2 == 0) //tour pair le joueur 1 joue
+				if (tour == 0) //tour pair le joueur 1 joue
 				{
 					this.player1.getVue().messageColPleine();
 				}
@@ -138,18 +141,26 @@ public class Partie
 				continue;					
 			}
 		    
-			if (vue1 == vue2)
-				this.player1.getVue().affichegrille(this.grille);
-			else	
-			{		
-			this.player1.getVue().affichegrille(this.grille);
-			this.player2.getVue().affichegrille(this.grille);
+			try
+			{
+				if (vue1 == vue2)
+					this.player1.getVue().ajoutePion(ligne, numColone, (tour+1), this.player1.getFenetre(), this.grille);
+				else	
+				{		
+					this.player1.getVue().ajoutePion(ligne, numColone, (tour+1), this.player1.getFenetre(), this.grille);
+					this.player2.getVue().ajoutePion(ligne, numColone, (tour+1), this.player2.getFenetre(), this.grille);
+				}
+			}
+			catch (CaseInexistanteException e)
+			{
+				// le test a été effectué avant
+				continue;
 			}
 			this.nbTours++; // tour suivant
 		}
 		
 		resultat = this.checkVictoire(NBPIONS);
-		if (vue1 == vue2)
+	
 	
 			if ( resultat == 1)
 			{
@@ -164,8 +175,11 @@ public class Partie
 			else
 				if (vue1 == vue2)
 					this.player1.getVue().messageNul();
-		
-		
+				else 
+				{
+					this.player1.getVue().messageNul();
+					this.player2.getVue().messageNul();
+				}
 		return resultat;
 	}
 

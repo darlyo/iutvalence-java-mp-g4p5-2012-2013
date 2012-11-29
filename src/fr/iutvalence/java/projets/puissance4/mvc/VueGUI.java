@@ -1,7 +1,8 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
 import fr.iutvalence.java.projets.puissance4.Grille;
@@ -15,24 +16,26 @@ public class VueGUI implements InterfaceVue
 {
 
 	@Override
-	public void affichegrille(Grille grille)
+	public void affichegrille(Grille grille, JFrame fenetre)
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
-	public void ajoutePion(int ligne, int colone, int valeur) throws CaseInexistanteException
+	public void ajoutePion(int ligne, int colone, int valeur, JFrame fenetre, Grille grille) throws CaseInexistanteException
 	{
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void messageTour(String nom)
 	{
-		// TODO Auto-generated method stub
-		
+		String str = "Tour de "+nom;
+		JFrame fenetre = new JFrame();
+
+		JOptionPane.showMessageDialog(fenetre, str, "Message", JOptionPane.PLAIN_MESSAGE);
+
 	}
 
 	@Override
@@ -45,7 +48,10 @@ public class VueGUI implements InterfaceVue
 	@Override
 	public void messageColPleine()
 	{
-		// TODO Auto-generated method stub
+		String str = "La colonne est pleine";
+		JFrame fenetre = new JFrame();
+
+		JOptionPane.showMessageDialog(fenetre, str, "Message", JOptionPane.ERROR_MESSAGE);
 		
 	}
 

@@ -1,5 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
+import javax.swing.JFrame;
+
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
 import fr.iutvalence.java.projets.puissance4.Grille;
 
@@ -13,16 +15,15 @@ public class VueConsole implements InterfaceVue
 {
 
 	@Override
-	public void affichegrille(Grille grille)
+	public void affichegrille(Grille grille, JFrame fenetre)
 	{
 		System.out.println(grille);
 	}
 
 	@Override
-	public void ajoutePion(int ligne, int colone, int valeur) throws CaseInexistanteException
+	public void ajoutePion(int ligne, int colone, int valeur, JFrame fenetre, Grille grille) throws CaseInexistanteException
 	{
-		// TODO Auto-generated method stub
-		
+		System.out.println(grille);
 	}
 
 	@Override

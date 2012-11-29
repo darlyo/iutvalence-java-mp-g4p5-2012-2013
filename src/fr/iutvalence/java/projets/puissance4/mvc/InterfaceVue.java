@@ -15,16 +15,19 @@ public interface InterfaceVue
 	/**
 	 * affiche une grille vide
 	 * @param grille la grille a afficher
+	 * @param fenetre fenetre d'affichage
 	 */
-	void affichegrille(Grille grille);
+	void affichegrille(Grille grille, JFrame fenetre);
 	
 	/**
 	 * @param ligne ligne ou est ajoute le pion
 	 * @param colone colonne ou l'on ajoute le pion
 	 * @param valeur entier qui permet de déterminer la couleur du pions
+	 * @param fenetre fenetre d'affichage
+	 * @param grille la grille a afficher
 	 * @throws CaseInexistanteException gestion d'exception si la colonne n'existe pas
 	 */
-	void ajoutePion( int ligne, int colone, int valeur)  throws  CaseInexistanteException;
+	void ajoutePion( int ligne, int colone, int valeur, JFrame fenetre, Grille grille)  throws  CaseInexistanteException;
 	
 	/**
 	 * affiche un message qui annonce a qui c'est de jouer
@@ -46,7 +49,7 @@ public interface InterfaceVue
 	
 	/**
 	 * affiche un message disant que le joueur a perdu la manche
-	 * @param nom 
+	 * @param nom nom du perdant
 	 */
 	public void messageDefaite(String nom);
 	
