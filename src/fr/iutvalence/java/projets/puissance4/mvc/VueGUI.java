@@ -1,6 +1,5 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,14 +17,18 @@ public class VueGUI implements InterfaceVue
 	@Override
 	public void affichegrille(Grille grille, JFrame fenetre)
 	{
-		
-		
+		fenetre.setVisible(true);	
 	}
 
 	@Override
 	public void ajoutePion(int ligne, int colone, int valeur, JFrame fenetre, Grille grille) throws CaseInexistanteException
 	{
-		// TODO Auto-generated method stub
+		String image;
+		if (valeur=1)
+			image = ("g:\Bureau\icones java\Gort's Icons Volume 5-GIF\DownRoad.gif");
+		else 
+			image = getToolkit().getImage("g:\Bureau\icones java\Gort's Icons Volume 5-GIF\Bax.gif");
+		
 	}
 
 	@Override
