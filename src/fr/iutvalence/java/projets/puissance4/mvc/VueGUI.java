@@ -1,5 +1,9 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
+import java.awt.GridLayout;
+
+import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
@@ -18,6 +22,10 @@ public class VueGUI implements InterfaceVue
 	private Panneau pan;
 	
 	/**
+	 * 
+	 */
+	private Box cmd;
+	/**
 	 * Fenetre associe au joueur
 	 */
 	private JFrame fenetre;
@@ -35,7 +43,22 @@ public class VueGUI implements InterfaceVue
 		
 		this.pan = new Panneau();
 		this.pan.paintInit();
-		this.fenetre.setContentPane(this.pan);
+		
+		this.cmd = Box.createHorizontalBox();
+	    //On ajoute le bouton au content pane de la JFrame
+	    this.cmd.add(new JButton("1"));
+	    this.cmd.add(new JButton("2"));
+	    this.cmd.add(new JButton("3"));
+	    this.cmd.add(new JButton("4"));
+	    this.cmd.add(new JButton("5"));
+	    this.cmd.add(new JButton("6"));
+	    this.cmd.add(new JButton("7"));
+
+	    Box box = Box.createVerticalBox();
+	    box.add(this.cmd);
+	    box.add(this.pan);
+	    
+		this.fenetre.setContentPane(box);
 		this.fenetre.repaint();
 		this.fenetre.setVisible(true);
 	}

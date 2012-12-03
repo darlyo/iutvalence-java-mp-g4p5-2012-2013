@@ -77,14 +77,16 @@ public class Puissance4Test
 				case 2:
 				{
 					System.out.print("\n Bilan du match entre: ");
-					// FIXME ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
-					if ( j1.getName() == "")
+					// FIXME (fixed) ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
+					if ( j1.getName().isEmpty())
 						System.out.print("Joueur 1");
-					else System.out.print(j1.getName());
+					else 
+						System.out.print(j1.getName());
 					System.out.print(" et ");
-					if (j2.getName() == "")
+					if (j2.getName().isEmpty())
 						System.out.print("Joueur 2");
-					else System.out.print(j2.getName());
+					else 
+						System.out.print(j2.getName());
 					
 					if (j1.getNbVictoires() < j2.getNbVictoires())
 						System.out.println("Victoire de " + j2.getName() + " par " + j2.getNbVictoires() + " a "

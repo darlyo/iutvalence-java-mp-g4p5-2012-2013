@@ -79,12 +79,12 @@ public class Partie
 	 */
 	public Partie(String player1, String player2)
 	{  
-		// FIXME ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
-		if (player1 != "")
+		// FIXME(fixed) ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
+		if (player1.isEmpty())
 			this.player1 = player1;
 		else
 			this.player1 = "Joueur 1";
-		if (player2 != "")
+		if (player2.isEmpty())
 			this.player2 = player2;
 		else
 			this.player2 = "Joueur 2";
