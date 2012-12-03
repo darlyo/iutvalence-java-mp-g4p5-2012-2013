@@ -1,7 +1,5 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 
 
@@ -35,11 +33,6 @@ public class Joueur
 	 */
 	private InterfaceVue vj;
 	
-	/**
-	 * Fenetre associe au joueur
-	 */
-	private JFrame fenetre;
-	
 
 	// *********** CONSTRUCTEUR *****************
 
@@ -53,17 +46,7 @@ public class Joueur
 		this.playerName = "";
 		this.nbVictoires = 0;
 		this.cj = cj;
-		this.vj = vj;
-		
-		this.fenetre = new JFrame();
-		
-		this.fenetre.setTitle("Puissance 4");
-		this.fenetre.setSize(700, 700);
-		this.fenetre.setLocationRelativeTo(null);
-		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-	    
-	    JPanel pan = new JPanel();
-	    this.fenetre.setContentPane(pan);               
+		this.vj = vj;	              
 	}
 
 	/**
@@ -136,13 +119,4 @@ public class Joueur
 	{
 		return this.vj;
 	}
-	
-	/**
-	 * @return la fenetre du joueur
-	 */
-	public JFrame getFenetre()
-	{
-		return this.fenetre;		
-	}
-
 }

@@ -23,8 +23,6 @@ public class ControlIA implements InterfaceControl
 		int ligne;
 		int colonne;
 		String position;
-		//if (T_MAX - this.nbTours < nbCoup)
-		//	nbCoup = T_MAX - this.nbTours;
 		
 		//evaluation des coups
 		System.out.println("coup possible:");

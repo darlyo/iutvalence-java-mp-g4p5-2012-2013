@@ -1,7 +1,5 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
-import javax.swing.JFrame;
-
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
 import fr.iutvalence.java.projets.puissance4.Grille;
 
@@ -15,49 +13,20 @@ public class VueConsole implements InterfaceVue
 {
 
 	@Override
-	public void affichegrille(Grille grille, JFrame fenetre)
+	public void affichegrille(Grille grille)
 	{
 		System.out.println(grille);
 	}
 
 	@Override
-	public void ajoutePion(int ligne, int colone, int valeur, JFrame fenetre, Grille grille) throws CaseInexistanteException
+	public void ajoutePion(int ligne, int colone, int valeur, Grille grille) throws CaseInexistanteException
 	{
 		System.out.println(grille);
 	}
 
 	@Override
-	public void messageTour(String nom)
+	public void message(String msg)
 	{
-		System.out.println("C'est a "+nom+" de jouer.");
+		System.out.println(msg);
 	}
-
-	@Override
-	public void messageVictoire(String nom)
-	{
-		System.out.println(nom+"vous avez gagné cette manche, Bravo !");
-		
-	}
-
-	@Override
-	public void messageColPleine()
-	{
-		System.out.println("La colonne est pleine, choisissez une autre colonne.");
-	}
-	
-	
-	/**
-	 * 
-	 */
-	public void messageDefaite(String nom)
-	{
-		System.out.println(nom+"vous avez perdu cette manche.");
-	}
-
-	public void messageNul()
-	{
-		System.out.println("Cette manche est nulle");
-	}
-
-
 }
