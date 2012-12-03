@@ -79,6 +79,7 @@ public class Partie
 	 */
 	public Partie(String player1, String player2)
 	{  
+		// FIXME ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
 		if (player1 != "")
 			this.player1 = player1;
 		else

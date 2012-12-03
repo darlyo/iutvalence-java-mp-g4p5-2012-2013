@@ -99,7 +99,6 @@ public class Partie
 		int numColone;
 		int ligne;
 		int tour;
-		// FIXME ( FIXED )se rendre indépendant de l'affichage console
 		this.player1.getVue().affichegrille(this.grille);
 		this.player2.getVue().affichegrille(this.grille);
 		InterfaceVue vue1, vue2;
@@ -298,7 +297,7 @@ public class Partie
 		try
 		{
 			couleur = this.grille.getCase(x,y); 
-
+			// FIXME il faut utiliser && ou || pour combiner des conditions (et non & ou |)  
 			if ((x+3 < Grille.X_MAX) & (this.grille.getCase(x+1,y) == couleur) & (this.grille.getCase(x+2,y) == couleur) & (this.grille.getCase(x+3,y) == couleur))
 				return couleur;
 			if ((x-1 >-1) & (x+2 < Grille.X_MAX) &(this.grille.getCase(x-1,y) == couleur) & (this.grille.getCase(x+1,y) == couleur) & (this.grille.getCase(x+2,y) == couleur))
