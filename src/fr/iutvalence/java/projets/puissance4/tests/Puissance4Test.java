@@ -77,7 +77,6 @@ public class Puissance4Test
 				case 2:
 				{
 					System.out.print("\n Bilan du match entre: ");
-					// FIXME (fixed) ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
 					if ( j1.getName().isEmpty())
 						System.out.print("Joueur 1");
 					else 

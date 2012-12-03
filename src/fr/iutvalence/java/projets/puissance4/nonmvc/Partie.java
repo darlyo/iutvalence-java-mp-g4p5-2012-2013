@@ -79,7 +79,6 @@ public class Partie
 	 */
 	public Partie(String player1, String player2)
 	{  
-		// FIXME(fixed) ne pas utiliser == ou != pour comparer les chaînes de caractères, ça ne marche pas !
 		if (player1.isEmpty())
 			this.player1 = player1;
 		else
@@ -270,40 +269,40 @@ public class Partie
 		{
 			couleur = this.grille.getCase(x,y); 
 
-			if ((x+3 < Grille.X_MAX) & (this.grille.getCase(x+1,y) == couleur) & (this.grille.getCase(x+2,y) == couleur) & (this.grille.getCase(x+3,y) == couleur))
+			if ((x+3 < Grille.X_MAX) && (this.grille.getCase(x+1,y) == couleur) && (this.grille.getCase(x+2,y) == couleur) && (this.grille.getCase(x+3,y) == couleur))
 				return couleur;
-			if ((x-1 >-1) & (x+2 < Grille.X_MAX) &(this.grille.getCase(x-1,y) == couleur) & (this.grille.getCase(x+1,y) == couleur) & (this.grille.getCase(x+2,y) == couleur))
+			if ((x-1 >-1) && (x+2 < Grille.X_MAX) && (this.grille.getCase(x-1,y) == couleur) && (this.grille.getCase(x+1,y) == couleur) && (this.grille.getCase(x+2,y) == couleur))
 				return couleur;
-			if ((x-2 >-1) & (x+1 < Grille.X_MAX) &(this.grille.getCase(x-2,y) == couleur) & (this.grille.getCase(x-1,y) == couleur) & (this.grille.getCase(x+1,y) == couleur))
+			if ((x-2 >-1) && (x+1 < Grille.X_MAX) && (this.grille.getCase(x-2,y) == couleur) && (this.grille.getCase(x-1,y) == couleur) && (this.grille.getCase(x+1,y) == couleur))
 				return couleur;
-			if ((x-3 >-1) &(this.grille.getCase(x-3,y) == couleur) & (this.grille.getCase(x-2,y) == couleur) & (this.grille.getCase(x-1,y) == couleur))
+			if ((x-3 >-1) && (this.grille.getCase(x-3,y) == couleur) && (this.grille.getCase(x-2,y) == couleur) && (this.grille.getCase(x-1,y) == couleur))
 				return couleur; //ligne horizontale check
 			
-			if ((y < Grille.Y_MAX) & (this.grille.getCase(x,y+1) == couleur) & (this.grille.getCase(x,y+2) == couleur) & (this.grille.getCase(x,y+3) == couleur))
+			if ((y < Grille.Y_MAX) && (this.grille.getCase(x,y+1) == couleur) && (this.grille.getCase(x,y+2) == couleur) && (this.grille.getCase(x,y+3) == couleur))
 				return couleur;
-			if ((y-1 >-1) & (y+2 < Grille.Y_MAX) &(this.grille.getCase(x,y-1) == couleur) &  (this.grille.getCase(x,y+1) == couleur) & (this.grille.getCase(x,y+2) == couleur))
+			if ((y-1 >-1) && (y+2 < Grille.Y_MAX) && (this.grille.getCase(x,y-1) == couleur) &&  (this.grille.getCase(x,y+1) == couleur) && (this.grille.getCase(x,y+2) == couleur))
 				return couleur;
-			if ((y-1 >-2) & (y+1 < Grille.Y_MAX) &(this.grille.getCase(x,y-2) == couleur) &  (this.grille.getCase(x,y-1) == couleur) & (this.grille.getCase(x,y+1) == couleur))
+			if ((y-1 >-2) && (y+1 < Grille.Y_MAX) && (this.grille.getCase(x,y-2) == couleur) &&  (this.grille.getCase(x,y-1) == couleur) && (this.grille.getCase(x,y+1) == couleur))
 				return couleur;
-			if ((y-1 >-3) &(this.grille.getCase(x,y-3) == couleur) &  (this.grille.getCase(x,y-2) == couleur) & (this.grille.getCase(x,y-1) == couleur))
+			if ((y-1 >-3) && (this.grille.getCase(x,y-3) == couleur) &&  (this.grille.getCase(x,y-2) == couleur) && (this.grille.getCase(x,y-1) == couleur))
 				return couleur; //ligne verticale check
 			
-			if ((x+3 < Grille.X_MAX) & (y+3 < Grille.Y_MAX) & (this.grille.getCase(x+1,y+1) == couleur) & (this.grille.getCase(x+2,y+2) == couleur) & (this.grille.getCase(x+3,y+3) == couleur))
+			if ((x+3 < Grille.X_MAX) && (y+3 < Grille.Y_MAX) && (this.grille.getCase(x+1,y+1) == couleur) && (this.grille.getCase(x+2,y+2) == couleur) && (this.grille.getCase(x+3,y+3) == couleur))
 				return couleur;
-			if ((x+2 < Grille.X_MAX) & (y+2 < Grille.Y_MAX) & (x-1 > -1) & (y-1 >-1) & (this.grille.getCase(x-1,y-1)== couleur) & (this.grille.getCase(x+1,y+1)== couleur) & (this.grille.getCase(x+2,y+2)== couleur))
+			if ((x+2 < Grille.X_MAX) && (y+2 < Grille.Y_MAX) && (x-1 > -1) && (y-1 >-1) && (this.grille.getCase(x-1,y-1)== couleur) && (this.grille.getCase(x+1,y+1)== couleur) && (this.grille.getCase(x+2,y+2)== couleur))
 				return couleur;
-			if ((x+1 < Grille.X_MAX) & (y+1 < Grille.Y_MAX) & (x-2 > -1) & (y-2 >-1) & (this.grille.getCase(x-2,y-2)== couleur) & (this.grille.getCase(x-1,y-1)== couleur) & (this.grille.getCase(x+1,y+1)== couleur))
+			if ((x+1 < Grille.X_MAX) && (y+1 < Grille.Y_MAX) && (x-2 > -1) && (y-2 >-1) && (this.grille.getCase(x-2,y-2)== couleur) && (this.grille.getCase(x-1,y-1)== couleur) && (this.grille.getCase(x+1,y+1)== couleur))
 				return couleur;
-			if ((x-3 > -1) & (y-3 >-1) & (this.grille.getCase(x-3,y-3)== couleur) & (this.grille.getCase(x-2,y-2)== couleur) & (this.grille.getCase(x-1,y-1)== couleur))
+			if ((x-3 > -1) && (y-3 >-1) && (this.grille.getCase(x-3,y-3)== couleur) && (this.grille.getCase(x-2,y-2)== couleur) && (this.grille.getCase(x-1,y-1)== couleur))
 				return couleur; // Diagonnale gauche droite check
 			
-			if ((x-3 > -1) & (y+3 <Grille.Y_MAX) & (this.grille.getCase(x-3,y+3) == couleur) & (this.grille.getCase(x-2,y+2) == couleur) & (this.grille.getCase(x-1,y+1) == couleur))
+			if ((x-3 > -1) && (y+3 <Grille.Y_MAX) && (this.grille.getCase(x-3,y+3) == couleur) && (this.grille.getCase(x-2,y+2) == couleur) && (this.grille.getCase(x-1,y+1) == couleur))
 				return couleur;
-			if ((x-2 > -1) & (y-1 >-1) & (y+2 <Grille.Y_MAX) & (x+1 < Grille.X_MAX) & (this.grille.getCase(x-2,y+2) == couleur) & (this.grille.getCase(x-1,y+1) == couleur) & (this.grille.getCase(x+1,y-1) == couleur))
+			if ((x-2 > -1) && (y-1 >-1) && (y+2 <Grille.Y_MAX) && (x+1 < Grille.X_MAX) && (this.grille.getCase(x-2,y+2) == couleur) && (this.grille.getCase(x-1,y+1) == couleur) && (this.grille.getCase(x+1,y-1) == couleur))
 				return couleur;
-			if ((x-1 > -1) & (y-2 >-1) & (y+1 <Grille.Y_MAX) & (x+2 < Grille.X_MAX) & (this.grille.getCase(x-1,y+1) == couleur) & (this.grille.getCase(x+1,y-1) == couleur) & (this.grille.getCase(x+2,y-2) == couleur))
+			if ((x-1 > -1) && (y-2 >-1) && (y+1 <Grille.Y_MAX) && (x+2 < Grille.X_MAX) && (this.grille.getCase(x-1,y+1) == couleur) && (this.grille.getCase(x+1,y-1) == couleur) && (this.grille.getCase(x+2,y-2) == couleur))
 				return couleur;
-			if ( (y-2 >-1) & (x+2 < Grille.X_MAX) & (this.grille.getCase(x+1,y-1)== couleur) & (this.grille.getCase(x+2,y-2) == couleur) & (this.grille.getCase(x+3,y-3) == couleur))
+			if ( (y-2 >-1) && (x+2 < Grille.X_MAX) && (this.grille.getCase(x+1,y-1)== couleur) && (this.grille.getCase(x+2,y-2) == couleur) && (this.grille.getCase(x+3,y-3) == couleur))
 				return couleur; // diagonale droite gauche check
 		}
 		catch (CaseInexistanteException e)
