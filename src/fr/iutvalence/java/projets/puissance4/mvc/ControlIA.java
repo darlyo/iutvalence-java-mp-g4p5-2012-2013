@@ -14,7 +14,7 @@ public class ControlIA implements InterfaceControl
 {
 
 
-	public int saisie(int borne, Partie partie)
+	public int saisie(int borne, Grille grille)
 	{
 		int nbCoup = 8;
 		float listeCoup[] = new float[borne];
@@ -30,13 +30,13 @@ public class ControlIA implements InterfaceControl
 		{
 			try
 			{
-				if (!( partie.grille.colPleine(i)))
+				if (!( grille.colPleine(i)))
 				{
-					ligne = partie.grille.joue(1, i);
+					ligne = grille.joue(1, i);
 					position = ""+i;
-					listeCoup[i] = evaluation(nbCoup-1, position, partie );
+					listeCoup[i] = evaluation(nbCoup-1, position, grille );
 					System.out.println((i+1) + ":" + listeCoup[i]);
-					partie.grille.setCase(i, ligne, Grille.VIDE);
+					grille.setCase(i, ligne, Grille.VIDE);
 				}
 				else
 					System.out.println((i+1) + ": colonne pleine");
@@ -54,12 +54,12 @@ public class ControlIA implements InterfaceControl
 		{
 			try
 			{
-				if((min > listeCoup[i]) && (!partie.grille.colPleine(i)) )
+				if((min > listeCoup[i]) && (!grille.colPleine(i)) )
 				{
 					min = listeCoup[i];
 					colonne = i;
 				}
-				else if ((min == listeCoup[i]) && (!partie.grille.colPleine(i)))	//choix aléatoire si la note est équivalente
+				else if ((min == listeCoup[i]) && (!grille.colPleine(i)))	//choix aléatoire si la note est équivalente
 				{
 					if (Math.random() < .5)
 						colonne = i;
@@ -76,10 +76,10 @@ public class ControlIA implements InterfaceControl
 	/** 
 	 * @param nbCoup : le nombre de coup a prévoir
 	 * @param position chaine pour l'affichage
-	 * @param partie la partie evaluer
+	 * @param grille grille a evaluer
 	 * @return la note du coup 
 	 */
-	public float evaluation(int nbCoup, String position, Partie partie) 
+	public float evaluation(int nbCoup, String position, Grille grille ) 
 	{
 		if (nbCoup == 0)
 			return 0;
@@ -99,7 +99,7 @@ public class ControlIA implements InterfaceControl
 			joueur = -1;
 		
 		//teste de la grille
-		notePartie = (float) (Math.abs(partie.checkVictoire(Partie.NBPIONS))) *joueur;
+		notePartie = (float) (Math.abs(checkVictoire(Partie.NBPIONS, grille))) *joueur;
 		//System.out.print("note = " + notePartie + ",  joueur = " + joueur +"\n");
 		if (notePartie == 0)
 		{
@@ -107,17 +107,17 @@ public class ControlIA implements InterfaceControl
 			{
 				try
 				{
-					if(partie.grille.getCase(x, Grille.Y_MAX-1) != 0)
+					if(grille.getCase(x, Grille.Y_MAX-1) != 0)
 						xMaxP = xMaxP -1;
 					else
 					{
-						ligne = partie.grille.joue(joueur, x);
+						ligne = grille.joue(joueur, x);
 						newPosition = position +",";
-						newNote = evaluation(nbCoup-1, newPosition, partie );
+						newNote = evaluation(nbCoup-1, newPosition, grille  );
 						notePartie = notePartie + newNote;
 						
 						//System.out.println("x =" + x +"  profondeur" + nbCoup);
-						partie.grille.setCase(x, ligne, Grille.VIDE);
+						grille.setCase(x, ligne, Grille.VIDE);
 					}
 				}
 				catch (CaseInexistanteException e)
@@ -149,5 +149,108 @@ public class ControlIA implements InterfaceControl
 		//System.out.print("[position = " + position+"prof("+nbCoup+")"+" joueur("+joueur+")" );
 		//System.out.println("note("+notePartie+")]");
 		return notePartie;
+	}
+	
+	/**
+	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
+	 * @param nbPions le nombre de pions necessaire pour gagner
+	 * @param grille la grille a chek
+	 * @return le vainqueur ou 0 pour continuer la partie
+	 */
+	public int checkVictoire(int nbPions, Grille grille)
+	{
+		int x, y;	// variable pour se déplacer dans le tableau ordonne et abscisse
+		int i;
+		int couleur;	// variable de vérification et résultat (joueur gagnant)
+
+		try
+		{
+			for (x = 0; x < Grille.X_MAX ; x++)		// check des colonnes de gauche a droite
+			{
+				for(y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++)
+				{
+					if (grille.getCase(x, y)!= Grille.VIDE)
+					{
+						i = 0;
+						couleur = grille.getCase(x, y);
+						while((i < nbPions-1) && (grille.getCase(x, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (grille.getCase(x, y+i) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+
+			for (y = 0; y < Grille.Y_MAX ; y++) 	// check des lignes de bas en haut
+			{
+				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
+				{
+					if (grille.getCase(x, y)!= Grille.VIDE)
+					{
+						i = 0;
+						couleur = grille.getCase(x, y);
+						while((i < nbPions-1) && (grille.getCase(x+i, y)== couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (grille.getCase(x+i, y) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+
+			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
+			{
+				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
+				{
+					if (grille.getCase(x, y) != Grille.VIDE)
+					{
+						i = 0;
+						couleur = grille.getCase(x, y);
+						while((i < nbPions-1) && (grille.getCase(x+i, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (grille.getCase(x+i, y+i) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+			
+			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
+			{
+				for(x = Grille.X_MAX-1 ; x > (nbPions -1) ; x--)
+				{
+					if (grille.getCase(x, y) != Grille.VIDE)
+					{
+						i = 0;
+						couleur = grille.getCase(x, y);
+						while((i < nbPions-1) && (grille.getCase(x-i, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (grille.getCase(x-i, y+i) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+		}
+		catch (CaseInexistanteException e)
+		{
+			// case correcte car controlé avant
+			//on ignore donc l'erreur
+		}		
+
+		return Partie.CONTINU;
 	}
 }

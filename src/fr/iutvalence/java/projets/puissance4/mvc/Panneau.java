@@ -48,13 +48,14 @@ public class Panneau extends JPanel
 	 * corps du message
 	 */
 	private String msg = "";
-	
+
 	/**
 	* @param g graph
     */
 	public void paintComponent(Graphics g)
-    {
-	   if (this.init)
+    {	
+		//ancienne version qui marche pas
+	   /*if (this.init)
 	   {
 		   try
 		{
@@ -77,7 +78,7 @@ public class Panneau extends JPanel
 	   Font font = new Font("Courier", Font.BOLD, 20);
 	   g.setFont(font);
 	   g.setColor(Color.red);          
-	   g.drawString(this.msg, 200, 525);
+	   g.drawString(this.msg, 200, 525);*/
 		   
 	}      
 	

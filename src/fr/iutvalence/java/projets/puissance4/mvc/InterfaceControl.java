@@ -1,5 +1,7 @@
 package fr.iutvalence.java.projets.puissance4.mvc;
 
+import fr.iutvalence.java.projets.puissance4.Grille;
+
 /**
  * Interface pour le controle 
  * 
@@ -10,8 +12,8 @@ public interface InterfaceControl
 {	
 	/**
 	 * @param borne la borne maximale pour la saisie
-	 * @param partie la partie en cour
+	 * @param grille la partie en cour
 	 * @return valeur saisie par l'utilisateur -1 pour correspondre au tableau
 	 */
-	public int saisie(int borne, Partie partie);
+	public int saisie(int borne, Grille grille);
 }

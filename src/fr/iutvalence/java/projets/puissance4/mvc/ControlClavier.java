@@ -2,6 +2,8 @@ package fr.iutvalence.java.projets.puissance4.mvc;
 
 import java.util.Scanner;
 
+import fr.iutvalence.java.projets.puissance4.Grille;
+
 /**
  * interface de controle du clavier
  * 
@@ -11,7 +13,7 @@ public class ControlClavier implements InterfaceControl
 {
 
 	@Override
-	public int saisie(int borne, Partie partie)
+	public int saisie(int borne, Grille grille)
 	{
 		Scanner sc = new Scanner(System.in);
 		int colone = sc.nextInt();
