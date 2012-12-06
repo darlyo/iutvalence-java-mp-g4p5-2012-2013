@@ -26,9 +26,9 @@ public class Puissance4MVCetGUITest
 	{
 	    
 		InterfaceControl cj1 = new ControlIA();
-		InterfaceControl cj2 = new ControlClavier();
+		InterfaceControl cj2 = new VueGUI();
 		InterfaceVue vj1 = new VueConsole();
-		InterfaceVue vj2 = new VueGUI();
+		InterfaceVue vj2 = (InterfaceVue) cj2;
 		
 		Joueur j1 = new Joueur("IA", cj1, vj1);
 		Joueur j2 = new Joueur("Joueur", cj2, vj2);

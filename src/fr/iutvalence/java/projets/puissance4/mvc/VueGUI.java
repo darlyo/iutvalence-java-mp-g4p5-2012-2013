@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -36,14 +35,26 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	 */
 	private JLabel[][] tabl;
 	
+	/**
+	 * 
+	 */
+	private MyJButton[] button;
+
+	private boolean click;
+
+	private int colonne;
+	
 	@Override
 	public void affichegrille(Grille grille)
 	{
+		this.click = false;
+		
 		int ligne;
 		int col;
 		Icon blanc = new ImageIcon("./Image/vide.png");
 		Icon fleche = new ImageIcon("./Image/fleche.png");
 		this.tabl = new JLabel[7][6];
+		this.button = new MyJButton[7];
 		
         this.fenetre = new JFrame();
 		
@@ -62,7 +73,8 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		//ajout des boutons
 		for(col = 0; col<7; col++)
 		{
-			this.pan.add( new JButton(fleche));
+			this.button[col] = new MyJButton(fleche, col, new VueGUI());
+			this.pan.add( this.button[col]);
 		}
 		
 		//crteation du tableau de jlabel
@@ -104,16 +116,33 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	@Override
 	public int saisie(int borne, Grille grille)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("saisie");
+		/*int i;
+		for (i = 0; i<7; i++)
+		{
+			this.button[i].setEnabled(true);
+		}*/
+		while(this.click);
+		this.click = false;
+		System.out.println(this.colonne);
+
+		
+		/*for (i = 0; i<7; i++)
+		{
+			this.button[i].setEnabled(false);
+		}*/
+		System.out.println("fin saisie");
+
+		return this.colonne;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		int col = ((MyJButton) e.getSource()).getCol();
-		
-		
+		this.colonne = ((MyJButton) e.getSource()).getCol();
+		this.click = true;
+		System.out.println(this.colonne);
+
 	}
 	
 
