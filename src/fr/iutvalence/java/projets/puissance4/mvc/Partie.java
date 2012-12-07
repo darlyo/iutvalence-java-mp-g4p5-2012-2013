@@ -112,13 +112,16 @@ public class Partie
 				if (tour == 0) //tour pair le joueur 1 joue
 				{
 					this.player1.getVue().message("Tour de "+ this.player1.getName());
+		
 					numColone = this.player1.getCtrl().saisie(Grille.X_MAX, this.grille);
+					System.out.println("LLLLLLLLLLLLLL");
 					ligne = this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
 					this.player2.getVue().message("Tour de "+ this.player2.getName());
 					numColone = this.player2.getCtrl().saisie(Grille.X_MAX, this.grille);
+					System.out.println("LLLLLLLLLLLLLL");
 					ligne = this.grille.joue(this.j2, (int) (numColone));
 				}
 			}

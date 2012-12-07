@@ -73,7 +73,7 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		//ajout des boutons
 		for(col = 0; col<7; col++)
 		{
-			this.button[col] = new MyJButton(fleche, col, new VueGUI());
+			this.button[col] = new MyJButton(fleche, col, new VueGUI()); // semble ok vu qu'on rentre dans l'actionPerformed
 			this.pan.add( this.button[col]);
 		}
 		
@@ -115,8 +115,8 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 
 	@Override
 	public int saisie(int borne, Grille grille)
-	{
-		System.out.println("saisie");
+	{   
+		System.out.println("saisie"); // JAMAIS PRINT
 		/*int i;
 		for (i = 0; i<7; i++)
 		{
@@ -141,7 +141,8 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	{
 		this.colonne = ((MyJButton) e.getSource()).getCol();
 		this.click = true;
-		System.out.println(this.colonne);
+		
+		System.out.println(this.colonne); // PASSE ICI 
 
 	}
 	
