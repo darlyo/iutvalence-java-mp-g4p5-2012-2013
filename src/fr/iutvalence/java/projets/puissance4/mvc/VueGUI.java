@@ -21,40 +21,50 @@ import fr.iutvalence.java.projets.puissance4.Grille;
 public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 {
 	/**
-	 * 
+	 * Le panneau principal, où est disposé la grille
 	 */
 	private Panneau pan;
 	
 	/**
-	 * Fenetre associe au joueur
+	 * La fenêtre principale
 	 */
 	private JFrame fenetre;
 
 	/**
+	 * Représentation graphique des cases de la grille.
+	 * (le repère est identique à celui défini dans Grille)
 	 * 
 	 */
-	private JLabel[][] tabl;
+	private JLabel[][] cases;
 	
 	/**
-	 * 
+	 * Les boutons permettant de poser un jeton
 	 */
-	private MyJButton[] button;
+	private MyJButton[] boutons;
 
-	private boolean click;
+	/**
+	 * Etat du jeton (posé ou non-
+	 */
+	// L'attribut doit être déclaré "volatile" pour éviter les optimisations de boucle d'attente dans la méthode saisie
+	// voir http://www.javamex.com/tutorials/synchronization_volatile_typical_use.shtml
+	private volatile boolean jetonPose;
 
-	private int colonne;
+	/**
+	 * Colonne dans laquelle le jeton a été posé
+	 */
+	private int colonneJetonPose;
 	
 	@Override
 	public void affichegrille(Grille grille)
 	{
-		this.click = false;
+		this.jetonPose = false;
 		
 		int ligne;
 		int col;
 		Icon blanc = new ImageIcon("./Image/vide.png");
 		Icon fleche = new ImageIcon("./Image/fleche.png");
-		this.tabl = new JLabel[7][6];
-		this.button = new MyJButton[7];
+		this.cases = new JLabel[7][6];
+		this.boutons = new MyJButton[7];
 		
         this.fenetre = new JFrame();
 		
@@ -73,8 +83,8 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		//ajout des boutons
 		for(col = 0; col<7; col++)
 		{
-			this.button[col] = new MyJButton(fleche, col, new VueGUI()); // semble ok vu qu'on rentre dans l'actionPerformed
-			this.pan.add( this.button[col]);
+			this.boutons[col] = new MyJButton(fleche, col, this); // semble ok vu qu'on rentre dans l'actionPerformed
+			this.pan.add( this.boutons[col]);
 		}
 		
 		//crteation du tableau de jlabel
@@ -83,8 +93,8 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 			//initilalise les cases a vide
 			for(col = 0; col<7; col++)
 			{
-				this.tabl[col][ligne] = new JLabel(blanc);
-				this.pan.add( this.tabl[col][ligne]);
+				this.cases[col][ligne] = new JLabel(blanc);
+				this.pan.add( this.cases[col][ligne]);
 			}	
 		}
 		
@@ -102,7 +112,7 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		else 
 			icon = new ImageIcon("./Image/rond.png");
 		this.pan.paintPion(ligne, colone, valeur);
-		this.tabl[colone][5-ligne].setIcon(icon);
+		this.cases[colone][5-ligne].setIcon(icon);
 		this.pan.repaint();
 	}
 
@@ -117,32 +127,44 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	public int saisie(int borne, Grille grille)
 	{   
 		System.out.println("saisie"); // JAMAIS PRINT
-		/*int i;
-		for (i = 0; i<7; i++)
-		{
-			this.button[i].setEnabled(true);
-		}*/
-		while(this.click);
-		this.click = false;
-		System.out.println(this.colonne);
+		
+		// On réactive les boutons afin que pouvoir capturer les évènements
+		for (MyJButton bouton: boutons)
+			bouton.setEnabled(true);
+		
+		// On déclare le jeton non posé 
+		this.jetonPose = false;
+				
+		// On attend que le joueur pose son jeton
+		while(!this.jetonPose);
+		
+		
+		System.out.println(this.colonneJetonPose);
 
 		
-		/*for (i = 0; i<7; i++)
-		{
-			this.button[i].setEnabled(false);
-		}*/
 		System.out.println("fin saisie");
 
-		return this.colonne;
+		return this.colonneJetonPose;
 	}
 
+	/**
+	 * Traitement du click sur les boutons permettant de poser les jetons
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		this.colonne = ((MyJButton) e.getSource()).getCol();
-		this.click = true;
+		// Obtention de la colonne associée au bouton sur lequel l'évènement s'est produit
+		this.colonneJetonPose = ((MyJButton) e.getSource()).getCol();
 		
-		System.out.println(this.colonne); // PASSE ICI 
+		// On déclare le jeton posé
+		this.jetonPose = true;
+		
+		// On désactive les boutons pour éviter les évènements en dehors du tour de jeu du joueur
+		for (MyJButton bouton: boutons)
+			bouton.setEnabled(false);
+		
+		System.out.println(this.colonneJetonPose); // PASSE ICI 
 
 	}
 	

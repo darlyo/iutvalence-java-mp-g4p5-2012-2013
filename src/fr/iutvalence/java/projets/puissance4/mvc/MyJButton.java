@@ -25,7 +25,7 @@ public class MyJButton extends JButton
 	public MyJButton(Icon icon, int col, ActionListener listener)
 	{	
 		super(icon);
-		this.col = col+1;
+		this.col = col;
 		this.addActionListener(listener);
 	}
 	
