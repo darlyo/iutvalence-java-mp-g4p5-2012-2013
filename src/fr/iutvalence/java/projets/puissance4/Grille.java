@@ -278,4 +278,62 @@ public class Grille
 		return CONTINU;
 	}
 	
+
+	/**
+	 * @param x l'abscisse du pions a checker
+	 * @param y l'ordonnée du pion a checker
+	 * @param nbPions le nombre de pions a aligner pour gagner
+	 * @return le gagnant ou 0  pour continuer ou -1 si le case n'existe pas ( plus ou moins impossible )
+	 */
+	public int checkvictoryV2(int x, int y, int nbPions) 
+	{   
+		int couleur;
+		
+		try
+		{
+			couleur = this.getCase(x,y);   
+			if ((x+3 < X_MAX) && (this.getCase(x+1,y) == couleur) && (this.getCase(x+2,y) == couleur) && (this.getCase(x+3,y) == couleur))
+				return couleur;
+			if ((x-1 >= 0) && (x+2 < X_MAX) && (this.getCase(x-1,y) == couleur) && (this.getCase(x+1,y) == couleur) && (this.getCase(x+2,y) == couleur))
+				return couleur;
+			if ((x-2 >= 0) && (x+1 < X_MAX) && (this.getCase(x-2,y) == couleur) && (this.getCase(x-1,y) == couleur) && (this.getCase(x+1,y) == couleur))
+				return couleur;
+			if ((x-3 >= 0) &&(this.getCase(x-3,y) == couleur) && (this.getCase(x-2,y) == couleur) && (this.getCase(x-1,y) == couleur))
+				return couleur; //ligne horizontale check
+			
+			
+			if ((y-3 >= 0) &&(this.getCase(x,y-3) == couleur) &&  (this.getCase(x,y-2) == couleur) && (this.getCase(x,y-1) == couleur))
+				return couleur; //ligne verticale check
+		
+			
+			if ((x+3 < X_MAX) && (y+3 < Y_MAX) && (this.getCase(x+1,y+1) == couleur) && (this.getCase(x+2,y+2) == couleur) && (this.getCase(x+3,y+3) == couleur))
+				return couleur;
+			if ((x+2 < X_MAX) && (y+2 < Y_MAX) && (x-1 >= 0) && (y-1 >= 0) && (this.getCase(x-1,y-1)== couleur) && (this.getCase(x+1,y+1)== couleur) && (this.getCase(x+2,y+2)== couleur))
+				return couleur;
+			if ((x+1 < X_MAX) && (y+1 < Y_MAX) && (x-2 >= 0) && (y-2 >= 0) && (this.getCase(x-2,y-2)== couleur) && (this.getCase(x-1,y-1)== couleur) && (this.getCase(x+1,y+1)== couleur))
+				return couleur;
+			if ((x-3 >= 0) && (y-3 >-1) && (this.getCase(x-3,y-3)== couleur) && (this.getCase(x-2,y-2)== couleur) && (this.getCase(x-1,y-1)== couleur))
+				return couleur; // Diagonnale gauche droite check
+			
+			
+			if ((x-3 >= 0) && (y+3 <Y_MAX) && (this.getCase(x-3,y+3) == couleur) && (this.getCase(x-2,y+2) == couleur) && (this.getCase(x-1,y+1) == couleur))
+				return couleur;
+			if ((x-2 >= 0) && (y-1 >= 0) && (y+2 <Y_MAX) && (x+1 < X_MAX) && (this.getCase(x-2,y+2) == couleur) && (this.getCase(x-1,y+1) == couleur) && (this.getCase(x+1,y-1) == couleur))
+				return couleur;
+			if ((x-1 >= 0) && (y-2 >= 0) && (y+1 <Y_MAX) && (x+2 < X_MAX) && (this.getCase(x-1,y+1) == couleur) && (this.getCase(x+1,y-1) == couleur) && (this.getCase(x+2,y-2) == couleur))
+				return couleur;
+			if ( (y-2 >= 0) && (x+2 < X_MAX) && (this.getCase(x+1,y-1)== couleur) && (this.getCase(x+2,y-2) == couleur) && (this.getCase(x+3,y-3) == couleur))
+				return couleur; // diagonale droite gauche check
+		}
+		catch (CaseInexistanteException e)
+		{
+			// case correcte car controlé avant
+			//on ignore donc l'erreur
+		}
+		
+		
+		return 0;
+		
+	}
+	
 }
