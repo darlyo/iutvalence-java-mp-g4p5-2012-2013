@@ -12,34 +12,35 @@ import fr.iutvalence.java.projets.puissance4.Grille;
  */
 public class ControlIA implements InterfaceControl
 {
+	/**
+	 * determine la profondeur de la recherche de l'IA
+	 */
+	private static final int DIFFICULTE = 9;
 
-
-	public int saisie(int borne, Grille grille)
+	public int saisie(int borne, Grille grille, int joueur)
 	{
-		int nbCoup = 8;
+		int nbCoup = DIFFICULTE;
 		float listeCoup[] = new float[borne];
-		float min;
-		int i;
+		float max;
+		int col;
 		int ligne;
 		int colonne;
-		String position;
 		
 		//evaluation des coups
 		System.out.println("coup possible:");
-		for (i=0; i<borne ; i++)
+		for (col=0; col<borne ; col++)
 		{
 			try
 			{
-				if (!( grille.colPleine(i)))
+				if (!( grille.colPleine(col)))
 				{
-					ligne = grille.joue(1, i);
-					position = ""+i;
-					listeCoup[i] = evaluation(nbCoup-1, position, grille );
-					System.out.println((i+1) + ":" + listeCoup[i]);
-					grille.setCase(i, ligne, Grille.VIDE);
+					ligne = grille.joue(joueur, col);
+					listeCoup[col] = evaluation(nbCoup-1, grille, joueur*-1 );
+					System.out.println((col+1) + ":" + listeCoup[col]);
+					grille.setCase(col, ligne, Grille.VIDE);	//on enleve le coup jouer apres son evaluation
 				}
 				else
-					System.out.println((i+1) + ": colonne pleine");
+					System.out.println((col+1) + ": colonne pleine");
 			}
 			catch (Exception e)
 			{
@@ -48,21 +49,21 @@ public class ControlIA implements InterfaceControl
 				continue;
 			}
 		}
-		min = 2;
+		max = -2;
 		colonne = 0;
-		for (i =0; i<borne; i++)	//recherche du meilleur coup.
+		for (col =0; col<borne; col++)	//recherche du meilleur coup.
 		{
 			try
 			{
-				if((min > listeCoup[i]) && (!grille.colPleine(i)) )
+				if((max < listeCoup[col]) && (!grille.colPleine(col)) ) //le coup et meuilleur et que la colonne n'est pas pleine
 				{
-					min = listeCoup[i];
-					colonne = i;
+					max = listeCoup[col];
+					colonne = col;
 				}
-				else if ((min == listeCoup[i]) && (!grille.colPleine(i)))	//choix aléatoire si la note est équivalente
+				else if ((max == listeCoup[col]) && (!grille.colPleine(col)))	//choix aléatoire si la note est équivalente
 				{
 					if (Math.random() < .5)
-						colonne = i;
+						colonne = col;
 				}
 			}
 			catch (ColonneInexistanteException e)
@@ -73,51 +74,52 @@ public class ControlIA implements InterfaceControl
 		return colonne;
 	}
 	
+	
+	
+	
+	
+	
 	/** 
 	 * @param nbCoup : le nombre de coup a prévoir
-	 * @param position chaine pour l'affichage
 	 * @param grille grille a evaluer
+	 * @param joueur la valeur du joueur a jouer
 	 * @return la note du coup 
 	 */
-	public float evaluation(int nbCoup, String position, Grille grille ) 
+	public float evaluation(int nbCoup, Grille grille, int joueur ) 
 	{
 		if (nbCoup == 0)
 			return 0;
 		//Variable
 		float notePartie;
 		float newNote;
-		int joueur;
-		int x;
+		int col;
 		int ligne;
 		int xMaxP = Grille.X_MAX;
-		String newPosition;
-		
-		//initialisation de joueur
-		if (nbCoup % 2 == 0)
-			joueur = 1;
-		else 
-			joueur = -1;
 		
 		//teste de la grille
-		notePartie = (float) (Math.abs(checkVictoire(Partie.NBPIONS, grille))) *joueur;
-		//System.out.print("note = " + notePartie + ",  joueur = " + joueur +"\n");
-		if (notePartie == 0)
+		notePartie = (float) (Math.abs(grille.checkVictoire(Partie.NBPIONS))) *(joueur*-1);
+		// si il y a une victoire l'on a 1 ou -1 en fonction du joueur precedent (joueur*-1)
+		if (notePartie == 0) //pas de victoire actuellement
 		{
-			for (x=0; x<Grille.X_MAX; x++)
+			for (col=0; col<Grille.X_MAX; col++) //on parcourt les differantes colonne
 			{
 				try
 				{
-					if(grille.getCase(x, Grille.Y_MAX-1) != 0)
+					if(grille.colPleine(col))	
+						//si la colonne est pleine on diminue le nombre de colonne jouable
 						xMaxP = xMaxP -1;
 					else
 					{
-						ligne = grille.joue(joueur, x);
-						newPosition = position +",";
-						newNote = evaluation(nbCoup-1, newPosition, grille  );
+						ligne = grille.joue(joueur, col); //on fait jouer le joueur
+						newNote = evaluation(nbCoup-1, grille, joueur*-1  ); 	//on evalue la valeur du coup
+						//if (((DIFFICULTE-nbCoup)%2 == 1)&&(newNote == joueur))
+						//{
+						//	grille.setCase(col, ligne, Grille.VIDE);	// on annule le coup precedent
+						//	return newNote*-1;
+						//}
 						notePartie = notePartie + newNote;
 						
-						//System.out.println("x =" + x +"  profondeur" + nbCoup);
-						grille.setCase(x, ligne, Grille.VIDE);
+						grille.setCase(col, ligne, Grille.VIDE);	// on annule le coup precedent
 					}
 				}
 				catch (CaseInexistanteException e)
@@ -140,117 +142,13 @@ public class ControlIA implements InterfaceControl
 				}
 			}
 			
-			if (xMaxP == 0)		//toute les colonne sont pleine
-				notePartie = (float) 0;
+			if (xMaxP == 0)		//toute les colonne sont pleine 
+				notePartie = (float) 0; //on met a zero comme la division par 0 est imposible
 			else 
-				notePartie = notePartie / ((float) xMaxP);
+				notePartie = notePartie / ((float) xMaxP); //on divise par le nombre de colonne jouable
 		}
 		
-		//System.out.print("[position = " + position+"prof("+nbCoup+")"+" joueur("+joueur+")" );
-		//System.out.println("note("+notePartie+")]");
 		return notePartie;
 	}
 	
-	/**
-	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
-	 * @param nbPions le nombre de pions necessaire pour gagner
-	 * @param grille la grille a chek
-	 * @return le vainqueur ou 0 pour continuer la partie
-	 */
-	public int checkVictoire(int nbPions, Grille grille)
-	{
-		int x, y;	// variable pour se déplacer dans le tableau ordonne et abscisse
-		int i;
-		int couleur;	// variable de vérification et résultat (joueur gagnant)
-
-		try
-		{
-			for (x = 0; x < Grille.X_MAX ; x++)		// check des colonnes de gauche a droite
-			{
-				for(y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++)
-				{
-					if (grille.getCase(x, y)!= Grille.VIDE)
-					{
-						i = 0;
-						couleur = grille.getCase(x, y);
-						while((i < nbPions-1) && (grille.getCase(x, y+i) == couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (grille.getCase(x, y+i) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-
-			for (y = 0; y < Grille.Y_MAX ; y++) 	// check des lignes de bas en haut
-			{
-				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
-				{
-					if (grille.getCase(x, y)!= Grille.VIDE)
-					{
-						i = 0;
-						couleur = grille.getCase(x, y);
-						while((i < nbPions-1) && (grille.getCase(x+i, y)== couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (grille.getCase(x+i, y) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-
-			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
-			{
-				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
-				{
-					if (grille.getCase(x, y) != Grille.VIDE)
-					{
-						i = 0;
-						couleur = grille.getCase(x, y);
-						while((i < nbPions-1) && (grille.getCase(x+i, y+i) == couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (grille.getCase(x+i, y+i) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-			
-			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
-			{
-				for(x = Grille.X_MAX-1 ; x > (nbPions -1) ; x--)
-				{
-					if (grille.getCase(x, y) != Grille.VIDE)
-					{
-						i = 0;
-						couleur = grille.getCase(x, y);
-						while((i < nbPions-1) && (grille.getCase(x-i, y+i) == couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (grille.getCase(x-i, y+i) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-		}
-		catch (CaseInexistanteException e)
-		{
-			// case correcte car controlé avant
-			//on ignore donc l'erreur
-		}		
-
-		return Partie.CONTINU;
-	}
 }

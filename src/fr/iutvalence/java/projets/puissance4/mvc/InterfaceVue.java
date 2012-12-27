@@ -2,6 +2,7 @@ package fr.iutvalence.java.projets.puissance4.mvc;
 
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
 import fr.iutvalence.java.projets.puissance4.Grille;
+import fr.iutvalence.java.projets.puissance4.Menu;
 
 /**
  * Interface pour l'affichage 
@@ -30,5 +31,10 @@ public interface InterfaceVue
 	 * @param msg : intitulé du message
 	 */
 	void message(String msg);
+	
+	/**
+	 * @param menu :un menu a afficher
+	 */
+	void afficheMenu(Menu menu);
 	
 }

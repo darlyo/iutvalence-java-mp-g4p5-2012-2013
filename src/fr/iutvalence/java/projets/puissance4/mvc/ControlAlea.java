@@ -9,7 +9,7 @@ import fr.iutvalence.java.projets.puissance4.Grille;
 public class ControlAlea implements InterfaceControl
 {
 	
-	public int saisie(int borne, Grille grille )
+	public int saisie(int borne, Grille grille, int joueur )
 	{
 		return (int)(Math.round(Math.random()*(borne-1)));
 	}

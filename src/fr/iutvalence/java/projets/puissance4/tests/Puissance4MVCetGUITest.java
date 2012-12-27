@@ -1,6 +1,8 @@
 package fr.iutvalence.java.projets.puissance4.tests;
 
 
+import fr.iutvalence.java.projets.puissance4.Menu;
+import fr.iutvalence.java.projets.puissance4.MenuPleinException;
 import fr.iutvalence.java.projets.puissance4.mvc.ControlClavier;
 import fr.iutvalence.java.projets.puissance4.mvc.ControlIA;
 import fr.iutvalence.java.projets.puissance4.mvc.InterfaceControl;
@@ -24,14 +26,32 @@ public class Puissance4MVCetGUITest
 	 */
 	public static void main(String[] args)
 	{
+		//creation du joueur principal
+		InterfaceControl cj1 = new VueGUI();
+		InterfaceVue vj1 = (InterfaceVue) cj1;
+		//InterfaceVue vj1 = new VueConsole();
+		Joueur j1 = new Joueur("Joueur", cj1, vj1);
+
+		//creation d'un menu
+		String[] choix = {"Jouer","Quitter"};
+		Menu accueil = null;
+	    try
+		{
+			accueil = new Menu(2,"Accueil", choix);
+		}
+		catch (MenuPleinException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("menu non initialiser: " + choix.length);
+		}
 	    
-		InterfaceControl cj1 = new ControlIA();
-		InterfaceControl cj2 = new VueGUI();
-		InterfaceVue vj1 = new VueConsole();
-		InterfaceVue vj2 = (InterfaceVue) cj2;
+	    j1.getVue().afficheMenu(accueil);
+	    
+		InterfaceControl cj2 = new ControlIA();
+		InterfaceVue vj2 = new VueConsole();
 		
-		Joueur j1 = new Joueur("IA", cj1, vj1);
-		Joueur j2 = new Joueur("Joueur", cj2, vj2);
+		Joueur j2 = new Joueur("IA", cj2, vj2);
 
 		Partie partie;
 		int ordre = (int) Math.round(Math.random());

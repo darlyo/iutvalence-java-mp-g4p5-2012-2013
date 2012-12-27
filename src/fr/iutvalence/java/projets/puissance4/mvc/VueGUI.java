@@ -9,9 +9,11 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import fr.iutvalence.java.projets.puissance4.CaseInexistanteException;
 import fr.iutvalence.java.projets.puissance4.Grille;
+import fr.iutvalence.java.projets.puissance4.Menu;
 
 /**
  * gestiond e l'affiche graphique pour un joueur
@@ -23,8 +25,9 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	/**
 	 * Le panneau principal, où est disposé la grille
 	 */
-	private Panneau pan;
+	private JPanel pan;
 	
+	private JPanel panAcueil;
 	/**
 	 * La fenêtre principale
 	 */
@@ -54,6 +57,20 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	 */
 	private int colonneJetonPose;
 	
+	/**
+	 * creation de la fenetre du joueur
+	 */
+	public VueGUI()
+	{
+		this.fenetre = new JFrame();
+		
+		this.fenetre.setTitle("Puissance 4");
+		this.fenetre.setSize(600, 600);
+		this.fenetre.setLocationRelativeTo(null);
+		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.fenetre.setResizable(false);
+	}
+	
 	@Override
 	public void affichegrille(Grille grille)
 	{
@@ -66,16 +83,8 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		this.cases = new JLabel[7][6];
 		this.boutons = new MyJButton[7];
 		
-        this.fenetre = new JFrame();
-		
-		this.fenetre.setTitle("Puissance 4");
-		this.fenetre.setSize(600, 600);
-		this.fenetre.setLocationRelativeTo(null);
-		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.fenetre.setResizable(false);
-		
-		this.pan = new Panneau();
-		this.pan.paintInit();
+		this.pan = new JPanel();
+		//this.pan.paintInit();
 		this.pan.setBackground(Color.blue);
 		this.pan.setLayout(new GridLayout(7, 7));
 		
@@ -83,11 +92,11 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		//ajout des boutons
 		for(col = 0; col<7; col++)
 		{
-			this.boutons[col] = new MyJButton(fleche, col, this); // semble ok vu qu'on rentre dans l'actionPerformed
+			this.boutons[col] = new MyJButton(fleche, col, this);
 			this.pan.add( this.boutons[col]);
 		}
 		
-		//crteation du tableau de jlabel
+		//creation du tableau de jlabel
 		for(ligne = 0; ligne <6 ; ligne++)
 		{
 			//initilalise les cases a vide
@@ -111,7 +120,6 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 			icon = new ImageIcon("./Image/croix.png");
 		else 
 			icon = new ImageIcon("./Image/rond.png");
-		this.pan.paintPion(ligne, colone, valeur);
 		this.cases[colone][5-ligne].setIcon(icon);
 		this.pan.repaint();
 	}
@@ -119,12 +127,12 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 	@Override
 	public void message(String msg)
 	{
-		this.pan.setMsg(msg);
+		//this.pan.setMsg(msg);
 		this.pan.repaint();
 	}
 
 	@Override
-	public int saisie(int borne, Grille grille)
+	public int saisie(int borne, Grille grille, int joueur)
 	{   
 		System.out.println("saisie"); // JAMAIS PRINT
 		
@@ -167,6 +175,13 @@ public class VueGUI implements InterfaceVue, InterfaceControl, ActionListener
 		System.out.println(this.colonneJetonPose); // PASSE ICI 
 
 	}
-	
 
+	@Override
+	public void afficheMenu(Menu menu)
+	{
+		this.panAcueil = new JPanel();
+		this.panAcueil.setBackground(Color.blue);
+		this.panAcueil.setLayout(new GridLayout(1,3));
+	}
+	
 }

@@ -13,6 +13,11 @@ public class Grille
 	public static final int VIDE = 0;
 
 	/**
+	 * Informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
+	 */
+	public static final int CONTINU = 0;
+	
+	/**
 	 * largeur de la grille
 	 */
 	public static final int X_MAX = 7;
@@ -170,4 +175,107 @@ public class Grille
 			this.grille[x][y] = v;
 	}
 
+	/**
+	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
+	 * @param nbPions le nombre de pions necessaire pour gagner
+	 * @return le vainqueur ou 0 pour continuer la partie
+	 */
+	public int checkVictoire(int nbPions)
+	{
+		int x, y;	// variable pour se déplacer dans le tableau ordonne et abscisse
+		int i;
+		int couleur;	// variable de vérification et résultat (joueur gagnant)
+
+		try
+		{
+			for (x = 0; x < X_MAX ; x++)		// check des colonnes de gauche a droite
+			{
+				for(y = 0; y < (Y_MAX - nbPions +1) ; y++)
+				{
+					if (this.getCase(x, y)!= VIDE)
+					{
+						i = 1;
+						couleur = this.getCase(x, y);
+						while((i < nbPions-1) && (this.getCase(x, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.getCase(x, y+i) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+
+			for (y = 0; y < Y_MAX ; y++) 	// check des lignes de bas en haut
+			{
+				for(x = 0; x < (X_MAX - nbPions +1) ; x++)
+				{
+					if (this.getCase(x, y)!= VIDE)
+					{
+						i = 1;
+						couleur = this.getCase(x, y);
+						while((i < nbPions-1) && (this.getCase(x+i, y)== couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.getCase(x+i, y) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+
+			for (y = 0; y < (Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
+			{
+				for(x = 0; x < (X_MAX - nbPions +1) ; x++)
+				{
+					if (this.getCase(x, y) != VIDE)
+					{
+						i = 1;
+						couleur = this.getCase(x, y);
+						while((i < nbPions-1) && (this.getCase(x+i, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.getCase(x+i, y+i) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+			
+			for (y = 0; y < (Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
+																//Probleme diagonal non reconnue comme gagnante
+			{
+				for(x = X_MAX-1 ; x >= (nbPions -1) ; x--)
+				{
+					if (this.getCase(x, y) != VIDE)
+					{
+						i = 1;
+						couleur = this.getCase(x, y);
+						while((i < nbPions-1) && (this.getCase(x-i, y+i) == couleur) )
+						{
+							i++;
+						}
+						if ((i == nbPions-1) && (this.getCase(x-i, y+i) == couleur))
+						{
+							return couleur;
+						}
+					}
+				}
+			}
+		}
+		catch (CaseInexistanteException e)
+		{
+			// case correcte car controlé avant
+			//on ignore donc l'erreur
+		}		
+
+		return CONTINU;
+	}
+	
 }

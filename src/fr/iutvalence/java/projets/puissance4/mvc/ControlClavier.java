@@ -13,7 +13,7 @@ public class ControlClavier implements InterfaceControl
 {
 
 	@Override
-	public int saisie(int borne, Grille grille)
+	public int saisie(int borne, Grille grille, int joueur)
 	{
 		Scanner sc = new Scanner(System.in);
 		int colone = sc.nextInt();

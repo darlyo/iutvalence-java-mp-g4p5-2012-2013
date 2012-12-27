@@ -17,13 +17,7 @@ public class Partie
 	/**
 	 * T_MAX est le nombre maximal de tours qu'une partie peut durer
 	 */
-	private final static int T_MAX = 42;
-
-	/**
-	 * Informe qu'il n'y a pas encore de gagnant, permet de continuer la partie.
-	 */
-	public static final int CONTINU = 0;
-	
+	private final static int T_MAX = 42;	
 	
 	/**
 	 *  NBPIONS le nombre de pions a alligner pour gagner
@@ -76,7 +70,7 @@ public class Partie
 	public Partie(Joueur player1, Joueur player2)
 	{
 		this.j1 = 1;
-		this.j2 = 2;
+		this.j2 = -1;
 		this.player1 = player1;
 		this.player2 = player2;
 		this.nbTours = 0;
@@ -104,7 +98,7 @@ public class Partie
 		InterfaceVue vue1, vue2;
 		vue1 = this.player1.getVue();
 		vue2 = this.player2.getVue();
-		while ((this.nbTours != T_MAX) && (this.checkVictoire(NBPIONS) == CONTINU))
+		while ((this.nbTours != T_MAX) && (this.grille.checkVictoire(NBPIONS) == Grille.CONTINU))
 		{
 			tour = this.nbTours % 2;
 			try
@@ -113,14 +107,14 @@ public class Partie
 				{
 					this.player1.getVue().message("Tour de "+ this.player1.getName());
 		
-					numColone = this.player1.getCtrl().saisie(Grille.X_MAX, this.grille);
+					numColone = this.player1.getCtrl().saisie(Grille.X_MAX, this.grille, this.j1);
 					System.out.println("LLLLLLLLLLLLLL");
 					ligne = this.grille.joue(this.j1, (int) (numColone));
 				}
 				else	// tour impaire le joueur 2 joue
 				{
 					this.player2.getVue().message("Tour de "+ this.player2.getName());
-					numColone = this.player2.getCtrl().saisie(Grille.X_MAX, this.grille);
+					numColone = this.player2.getCtrl().saisie(Grille.X_MAX, this.grille, this.j2);
 					System.out.println("LLLLLLLLLLLLLL");
 					ligne = this.grille.joue(this.j2, (int) (numColone));
 				}
@@ -161,7 +155,7 @@ public class Partie
 			this.nbTours++; // tour suivant
 		}
 		
-		resultat = this.checkVictoire(NBPIONS);
+		resultat = this.grille.checkVictoire(NBPIONS);
 	
 	
 			if ( resultat == 1)
@@ -169,7 +163,7 @@ public class Partie
 				this.player1.getVue().message("Victoire de "+this.player1.getName());
 				this.player2.getVue().message("Victoire de "+ this.player1.getName());
 			}
-			else if (resultat == 2)
+			else if (resultat == -1)
 			{
 				this.player1.getVue().message("Victoire de " + this.player2.getName());
 				this.player2.getVue().message("Victoire de " + this.player2.getName());
@@ -186,107 +180,6 @@ public class Partie
 	}
 
 
-	/**
-	 * vérification de la grille pour voir si le dernier joueur a gagner ou non
-	 * @param nbPions le nombre de pions necessaire pour gagner
-	 * @return le vainqueur ou 0 pour continuer la partie
-	 */
-	public int checkVictoire(int nbPions)
-	{
-		int x, y;	// variable pour se déplacer dans le tableau ordonne et abscisse
-		int i;
-		int couleur;	// variable de vérification et résultat (joueur gagnant)
-
-		try
-		{
-			for (x = 0; x < Grille.X_MAX ; x++)		// check des colonnes de gauche a droite
-			{
-				for(y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++)
-				{
-					if (this.grille.getCase(x, y)!= Grille.VIDE)
-					{
-						i = 0;
-						couleur = this.grille.getCase(x, y);
-						while((i < nbPions-1) && (this.grille.getCase(x, y+i) == couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (this.grille.getCase(x, y+i) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-
-			for (y = 0; y < Grille.Y_MAX ; y++) 	// check des lignes de bas en haut
-			{
-				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
-				{
-					if (this.grille.getCase(x, y)!= Grille.VIDE)
-					{
-						i = 0;
-						couleur = this.grille.getCase(x, y);
-						while((i < nbPions-1) && (this.grille.getCase(x+i, y)== couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (this.grille.getCase(x+i, y) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-
-			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de gauche a droite
-			{
-				for(x = 0; x < (Grille.X_MAX - nbPions +1) ; x++)
-				{
-					if (this.grille.getCase(x, y) != Grille.VIDE)
-					{
-						i = 0;
-						couleur = this.grille.getCase(x, y);
-						while((i < nbPions-1) && (this.grille.getCase(x+i, y+i) == couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (this.grille.getCase(x+i, y+i) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-			
-			for (y = 0; y < (Grille.Y_MAX - nbPions +1) ; y++) 	// check diagonale de droite a gauche
-			{
-				for(x = Grille.X_MAX-1 ; x > (nbPions -1) ; x--)
-				{
-					if (this.grille.getCase(x, y) != Grille.VIDE)
-					{
-						i = 0;
-						couleur = this.grille.getCase(x, y);
-						while((i < nbPions-1) && (this.grille.getCase(x-i, y+i) == couleur) )
-						{
-							i++;
-						}
-						if ((i == nbPions-1) && (this.grille.getCase(x-i, y+i) == couleur))
-						{
-							return couleur;
-						}
-					}
-				}
-			}
-		}
-		catch (CaseInexistanteException e)
-		{
-			// case correcte car controlé avant
-			//on ignore donc l'erreur
-		}		
-
-		return CONTINU;
-	}
 	/**
 	 * @param x l'abscisse du pions a checker
 	 * @param y l'ordonnée du pion a checker

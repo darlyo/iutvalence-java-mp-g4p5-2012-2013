@@ -13,7 +13,8 @@ public interface InterfaceControl
 	/**
 	 * @param borne la borne maximale pour la saisie
 	 * @param grille la partie en cour
+	 * @param joueur valeur représentant le joueur dans la grille
 	 * @return valeur saisie par l'utilisateur -1 pour correspondre au tableau
 	 */
-	public int saisie(int borne, Grille grille);
+	public int saisie(int borne, Grille grille, int joueur);
 }
